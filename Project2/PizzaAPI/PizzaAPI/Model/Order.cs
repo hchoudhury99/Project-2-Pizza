@@ -15,6 +15,7 @@ namespace PizzaAPI.Model
         public DateTime OrderDate { get; set; }
         public DateTime Duetime { get; set; }
         public IEnumerable<Pizza> Pizza { get; set; }
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
     }
 }

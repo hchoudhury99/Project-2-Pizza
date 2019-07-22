@@ -42,7 +42,7 @@ namespace PizzaAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CustomerId");
+                    b.Property<int>("CustomerId");
 
                     b.Property<DateTime>("Duetime");
 
@@ -83,7 +83,7 @@ namespace PizzaAPI.Migrations
 
                     b.Property<int>("Crust");
 
-                    b.Property<int?>("OrderId");
+                    b.Property<int>("OrderId");
 
                     b.Property<int?>("PizzaName");
 
@@ -108,7 +108,8 @@ namespace PizzaAPI.Migrations
                 {
                     b.HasOne("PizzaAPI.Model.Customer", "Customer")
                         .WithMany("Order")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PizzaAPI.Model.Payment", b =>
@@ -123,7 +124,8 @@ namespace PizzaAPI.Migrations
                 {
                     b.HasOne("PizzaAPI.Model.Order", "Order")
                         .WithMany("Pizza")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

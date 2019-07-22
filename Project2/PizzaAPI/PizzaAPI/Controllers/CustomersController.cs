@@ -27,17 +27,37 @@ namespace PizzaAPI.Controllers
             return _context.Customer;
         }
 
+        //// GET: api/Customers/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetCustomer([FromRoute] int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var customer = await _context.Customer.FindAsync(id);
+
+        //    if (customer == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(customer);
+        //}
+
         // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCustomer([FromRoute] int id)
+        public async Task<IActionResult> GetCustomer([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var customer = await _context.Customer.FindAsync(id);
-
+            //var customer = await _context.Customer.FindAsync(id);
+            var customer = _context.Customer.FirstOrDefaultAsync(x => x.UserId == Convert.ToInt32(id)).Result;
+           // return customer;
             if (customer == null)
             {
                 return NotFound();
@@ -59,8 +79,18 @@ namespace PizzaAPI.Controllers
             {
                 return BadRequest();
             }
+            //var UserId =_context. HttpContext.User.Identity.Name;
+            //_context.Entry(customer).State = EntityState.Modified;
+            var existingCustomer = _context.Customer.Where(s => s.CustomerId == customer.CustomerId).FirstOrDefault<Customer>();
 
-            _context.Entry(customer).State = EntityState.Modified;
+            if (existingCustomer != null)
+            {
+                existingCustomer.CustomerId = id;
+                existingCustomer.Address = customer.Address;
+                existingCustomer.PhoneNo = customer.PhoneNo;
+                //existingCustomer.Orders = customer.Orders;
+                //_context.Entry(customer).State = EntityState.Modified;
+            }
 
             try
             {
@@ -120,6 +150,12 @@ namespace PizzaAPI.Controllers
         private bool CustomerExists(int id)
         {
             return _context.Customer.Any(e => e.CustomerId == id);
+        }
+
+        private Customer SearchCustomer(int? id)
+        {
+            var customer = _context.Customer.FirstOrDefaultAsync(x => x.UserId == id).Result;
+            return customer;
         }
     }
 }

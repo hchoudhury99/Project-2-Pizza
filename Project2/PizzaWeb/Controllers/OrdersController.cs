@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PizzaAPI.Model;
+using System.Threading;
+using System.Net;
 
 namespace PizzaWeb.Controllers
 {
@@ -24,11 +27,15 @@ namespace PizzaWeb.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_url);
-                //HTTP GET
-                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-                var responseTask = client.GetAsync("Orders");
-                responseTask.Wait();
+                //int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
 
+                // Customer c = Customer.FirstOrDefault(x => x.UserId == CurrentUserId);
+                //HTTP GET
+                //Request.ContentType = User.Claims.First().Value;
+                
+                var responseTask = client.GetAsync("Orders" );       
+                responseTask.Wait();
+                
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -50,6 +57,14 @@ namespace PizzaWeb.Controllers
                     Orders = Enumerable.Empty<Order>();
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+                //int userid = Convert.ToInt32(User.Claims.First().Value);
+                Customer c = SearchCustomerId(User.Claims.First().Value);
+                //Orders = Orders.Where(x => x.Customer.CustomerId == c.CustomerId);
+                //ViewBag.CustomerID = c.CustomerId;
+                if (Orders == null)
+                {
+                    Orders = Enumerable.Empty<Order>();
                 }
                 return View(Orders);
             }
@@ -79,11 +94,11 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,CustomerId,OrderTime,DeliveryTime,TotalPrice,OrderType")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,Customer, CustomerId, OrderDate,Duetime,TotalPrice")] Order order)
         {
             order.OrderDate = DateTime.Now;
             order.Duetime = DateTime.Now.AddMinutes(20);
-
+            //order.Customer = c;
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -94,12 +109,15 @@ namespace PizzaWeb.Controllers
                  {
                      DateFormatHandling = DateFormatHandling.IsoDateFormat
                  });
+                //int id = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
-                //HTTP GET
+       
+                Customer c = SearchCustomerId(User.Claims.First().Value);
+                order.CustomerId = c.CustomerId;
 
                 var postTask = client.PostAsJsonAsync("Orders", order);
-                postTask.Wait();
 
+                postTask.Wait();
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -233,6 +251,32 @@ namespace PizzaWeb.Controllers
                 }
             }
             return (order);
+        }
+
+        private Customer SearchCustomerId(string id)
+        {
+            Customer customers = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+
+                var responseTask = client.GetAsync("Customers/"+  id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Customer>();
+                    readTask.Wait();
+                    customers = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+            return customers;
         }
     }
 }

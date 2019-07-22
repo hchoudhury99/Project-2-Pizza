@@ -24,6 +24,9 @@ namespace PizzaAPI.Controllers
         [HttpGet]
         public IEnumerable<Order> GetOrder()
         {
+            //int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
+            //Customer c=_context.Customer.FirstOrDefault(x => x.UserId == CurrentUserId);
+            
             return _context.Order;
         }
 
@@ -85,12 +88,17 @@ namespace PizzaAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] Order order)
         {
+            //var customer = _context.Customer.FirstOrDefault(x => x.UserId == order.Customer.UserId);
+            //order.Customer = SearchCustomer(id);
+            //customer.Order.add(order);
+            //order.Customer.CustomerId = customer.CustomerId;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+           // order.Customer = null;
             _context.Order.Add(order);
+            //order.Customer = null;
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
@@ -120,6 +128,12 @@ namespace PizzaAPI.Controllers
         private bool OrderExists(int id)
         {
             return _context.Order.Any(e => e.OrderId == id);
+        }
+
+        private Customer SearchCustomer(int? id)
+        {
+            var customer = _context.Customer.FirstOrDefaultAsync(x => x.UserId == id).Result;
+            return customer;
         }
     }
 }

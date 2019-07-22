@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using PizzaAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,5 +15,8 @@ namespace PizzaWeb.Data
 
         [Display(Name = "Last Name")]
         public string Lastname { get; set; }
+
+        //[Display(Name = "Customer")]
+        //public Customer customer { get; set; }
     }
 }

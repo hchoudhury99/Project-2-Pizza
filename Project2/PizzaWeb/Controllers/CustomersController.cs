@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,10 @@ namespace PizzaWeb.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
+            //Customer c = SearchCustomerId(User.Claims.First().Value);
+            //customers = customers.Where(x => x.CustomerId == c.CustomerId);
+
+            
             return View(customers);
         }
 
@@ -73,10 +78,13 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("id,Address,Firstname,Lastname,PhoneNumber")] Customer customer)
+        public IActionResult Create([Bind("CustomerId,UserId, Address,PhoneNo")] Customer customer)
         {
+            //customer.UserId = UserManager.Users.First().Id;
             using (var client = new HttpClient())
             {
+                int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
+                customer.UserId = CurrentUserId;
                 client.BaseAddress = new Uri(_url);
                 //HTTP GET
                 // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
@@ -183,6 +191,32 @@ namespace PizzaWeb.Controllers
         //}
 
         private Customer SearchCustomer(int? id)
+        {
+            Customer customers = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+
+                var responseTask = client.GetAsync("Customers/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Customer>();
+                    readTask.Wait();
+                    customers = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+
+            return customers;
+        }
+
+        private Customer SearchCustomerId(string id)
         {
             Customer customers = null;
             using (var client = new HttpClient())

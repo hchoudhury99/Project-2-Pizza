@@ -35,6 +35,16 @@ namespace PizzaAPI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                    builder.WithOrigins("http://localhost:44350")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             services.AddDbContext<PizzaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("APIConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

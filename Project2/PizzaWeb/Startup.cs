@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using PizzaAPI.Model;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace PizzaWeb
 {
@@ -39,8 +40,10 @@ namespace PizzaWeb
             services.AddDbContext<IdentityAppContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDbContext<PizzaDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+           // services.AddDbContext<PizzaDbContext>(options =>
+               // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<IdentityAppContext>();
@@ -56,6 +59,13 @@ namespace PizzaWeb
             });
 
 
+            
+
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+                // Or you can also register as follows
+
+            services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
