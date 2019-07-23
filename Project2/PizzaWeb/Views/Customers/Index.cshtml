@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PizzaAPI.Model.Customer>
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/Table.css" />
+        <style>
+
+            body {               
+                font-family: 'Comfortaa', cursive;
+            }   
+        </style>
+    </head>
+
+
+<body>
+
+    <h1>Customer Info</h1>
+    <br />
+    
+    <a asp-action="Create" class="btn">Create New</a>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                @if (UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id == item.UserId)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+</body>

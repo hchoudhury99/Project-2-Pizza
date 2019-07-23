@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li style="display: inline; margin-right: 20px;">
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                    Hello @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Firstname
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname!
+ 
+                </a>
+            </li>
+            <li style="display: inline;">
+                <button type="submit" style="font-size: 15px;"><b>Logout</b></button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li style="display: inline; margin-right: 20px;"><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li style="display: inline;"><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    </ul>
+
+}

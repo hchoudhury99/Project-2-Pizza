@@ -1,0 +1,90 @@
+﻿@model IEnumerable<PizzaAPI.Model.Order>
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Order";
+}
+
+
+
+
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/Table.css" />
+        <style>
+
+            body {
+                font-family: 'Comfortaa', cursive;
+            }
+        </style>
+    </head>
+
+
+    <body>
+
+        <h1>Order</h1>
+        <br />
+        <a class="btn" asp-action="Create">Create New</a>
+        @ViewBag.CustomerID
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Customer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duetime)
+                    </th>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Pizza)
+                    </td>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <!-- if (UserManager.Users.FirstOrDefault(m => m.UserName == UserManager.GetUserName(User)).Id == item.Customer.UserId) {
+                    -->
+
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duetime)
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.Pizza) <br>
+
+
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </body>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PizzaWeb</title>
+
+    <link rel="stylesheet" href="~/css/Sp.css" />
+    <style>
+        #logo:hover {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <header class="header" role="banner" style="opacity: 0.85;">
+        <div id="NAV_OVERLAY" class="header__nav-overlay"></div>
+        <div class="header__inner">
+
+            <p>
+                <a asp-controller="Home" asp-action="Index" id="logo"><img src="~/images/logo.jpg" alt="Yell Pizza" style="height: 80px; width: 100px; margin-right: 30px;"></a>
+            </p>
+
+            <nav id="HEADER_NAV" class="header__nav" role="navigation">
+
+                <ul id="HEADER_NAV_INNNER" class="header__nav-inner">
+                    <li class="header__nav-item"><a href="">TOP</a></li>
+                    
+                    <li class="header__nav-item"><a asp-controller="Customers" asp-action="Index">Customers</a></li>
+                    <li class="header__nav-item"><a asp-controller="Orders" asp-action="Index">Orders</a></li>
+                    <li class="header__nav-item"><a asp-controller="Payments" asp-action="Index">Payments</a></li>
+                    <li class="header__nav-item"><a asp-controller="Pizzas" asp-action="Index">Pizzas</a></li>
+
+                    <li class="header__nav-item"><partial name="_LoginPartial" /></li>
+                </ul>
+
+            </nav>
+
+        </div>
+    </header>
+    <br /><br />
+    <br /><br />
+
+
+    <partial name="_CookieConsentPartial" />
+    
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

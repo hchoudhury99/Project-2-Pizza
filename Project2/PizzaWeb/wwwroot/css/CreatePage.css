@@ -1,0 +1,52 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/gkgd.jpg);
+    background-size: cover;
+}
+
+.btn {
+    border: none;
+    margin: 10px;
+    padding: 7px;
+    width: 90%;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    opacity: 0.8;
+    background-size: 180%;
+    transition: 0.6s;
+    background-image: linear-gradient(to left, #ffc312, #ee5a24, #ffc312, cadetblue);
+}
+
+.btn:hover {
+    background-position: right;
+}
+
+.textbox {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #ffc312;
+}
+
+.textbox input{
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  float: left;
+  margin: 10px;
+  color: black;
+}
+
+.box {
+    position: fixed;
+    top: 35%;
+    left: 20%;
+}

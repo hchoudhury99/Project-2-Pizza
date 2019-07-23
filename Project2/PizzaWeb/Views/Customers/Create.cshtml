@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+@model PizzaAPI.Model.Customer
+
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/CreatePage.css" />
+        <style>
+            body {
+                font-family: 'Comfortaa', cursive;
+            }
+        </style>
+    </head>
+
+
+
+<div class="box">
+    <h2>Create Customer</h2>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label class="control-label"> First name: </label>
+            @UserManager.Users.First().Firstname
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Last name: </label>
+            @UserManager.Users.First().Lastname
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Email: </label>
+            @UserManager.Users.First().Email
+        </div>
+
+        <div class="textbox">
+
+            <input asp-for="PhoneNo" placeholder="Phone #" />
+            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+        </div>
+        <div class="textbox">
+
+            <input asp-for="Address" placeholder="Address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn" />
+        </div>
+    </form>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+    
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

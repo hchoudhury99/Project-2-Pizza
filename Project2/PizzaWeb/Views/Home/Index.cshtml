@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <style>
+        body {
+        background-image: url(../images/Savory_Pizza_5K_Wallpaper.jpg);
+        background-size: cover;
+        }
+
+        #btn1{
+            position: absolute;
+            top: 40%;
+            right: 25%;
+            color: black;
+        }
+        #btn2{
+            position: absolute;
+            top: 60%;
+            right: 25%;
+            color: black;
+        }
+        #item{
+              font-size: 20px;
+              border: none;
+              padding: 30px;
+              width: 240px;
+              text-transform: uppercase;
+              border-radius: 20px;
+              cursor: pointer;
+              color: black;
+              opacity: 0.8;
+              background-size: 200%;
+              transition: 0.5s;
+              background-image: linear-gradient(to left, #fff, #8d8a85, #fff);
+        }
+        #item:hover{
+              background-position: right;
+              text-decoration: none;
+        }
+        img{
+            width: 85px;
+            height: 85px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="btn1">
+        <img src="~/images/819861.png" alt="image" />
+        <a id="item" asp-action="TopChoice">TOP CHOICE</a>
+    </div>
+    <div id="btn2">
+        <img src="~/images/819861.png" alt="image" />
+        <a id="item">MAKE MY OWN</a>
+    </div>
+
+
+</body>
