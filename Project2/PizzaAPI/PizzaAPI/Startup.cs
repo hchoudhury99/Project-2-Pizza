@@ -47,6 +47,7 @@ namespace PizzaAPI
 
             services.AddDbContext<PizzaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("APIConnection")));
+            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton(Configuration);
             //services.AddScoped<ICustomer, CustomerBLL>();

@@ -5,10 +5,10 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @{
-    ViewData["Title"] = "Cart";
+    ViewData["Title"] = "Order history";
 }
 
-<h2>Cart</h2>
+<h2>Order history</h2>
 <environment include="Development">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -20,18 +20,12 @@
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </environment>
 <style>
-    #table {
-        padding-top: 100px;
-    }
-
-    h2 {
-        padding-top: 90px;
-    }
+    
 </style>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@ViewBag.CustomerID
+
 <table class="table">
     <thead>
         <tr>

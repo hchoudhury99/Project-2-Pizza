@@ -27,7 +27,7 @@ namespace PizzaAPI.Controllers
             return _context.Customer;
         }
 
-        //// GET: api/Customers/5
+        // GET: api/Customers/5
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetCustomer([FromRoute] int id)
         //{
@@ -85,7 +85,7 @@ namespace PizzaAPI.Controllers
 
             if (existingCustomer != null)
             {
-                existingCustomer.CustomerId = id;
+                
                 existingCustomer.Address = customer.Address;
                 existingCustomer.PhoneNo = customer.PhoneNo;
                 //existingCustomer.Orders = customer.Orders;

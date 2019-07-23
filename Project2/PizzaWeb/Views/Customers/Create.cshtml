@@ -54,3 +54,20 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    $('#btn btn-default').click(function (e) {
+        var url = "http://localhost:56782/api/customers";
+        $.ajax({
+            contentType: 'application/json',
+            type: "POST",
+            url: url,
+            data: JSON.stringify(Customer),
+            success: function (data, textStatus, jqXHR) {
+                $("#postResult").val("Person created ok. Id=" + jqXHR.responseText);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#postResult").val(jqXHR.statusText);
+            }
+        });
+    });
+</script>
