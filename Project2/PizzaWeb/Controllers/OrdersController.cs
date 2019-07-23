@@ -19,7 +19,7 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class OrdersController : Controller
     {
-        private static string _url = "http://localhost:56782/api/";
+        private static string _url = "http://localhost:61219/api/";
         // GET: Orders
         public IActionResult Index()
         {
