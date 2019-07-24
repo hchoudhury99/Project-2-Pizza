@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ranjodh\\Desktop\\pt2Fenandme\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {}
+    "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ranjodh\\Desktop\\pt2Fenandme\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {
+    "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ranjodh\\Desktop\\pt2Fenandme\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
         "projectName": "PizzaAPI",
-        "projectPath": "C:\\Users\\Ranjodh\\Desktop\\pt2Fenandme\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+        "projectPath": "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
         "packagesPath": "C:\\Users\\Ranjodh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ranjodh\\Desktop\\pt2Fenandme\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
+        "outputPath": "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
