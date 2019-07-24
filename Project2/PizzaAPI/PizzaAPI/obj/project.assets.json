@@ -12734,5 +12734,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\PizzaAPI.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
