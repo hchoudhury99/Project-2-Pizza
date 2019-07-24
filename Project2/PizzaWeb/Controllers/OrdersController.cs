@@ -12,9 +12,11 @@ using Newtonsoft.Json;
 using PizzaAPI.Model;
 using System.Threading;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private static string _url = "http://localhost:63461/api/";

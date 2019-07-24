@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         //private readonly PizzaDbContext _context;

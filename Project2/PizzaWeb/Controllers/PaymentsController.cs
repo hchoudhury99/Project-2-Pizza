@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private static string _url = "http://localhost:63461/api/";
