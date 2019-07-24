@@ -12,6 +12,7 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
+
     [Authorize]
     public class PizzasController : Controller
     {
@@ -49,7 +50,9 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Pizzas/Details/5
+
         public async Task<IActionResult> Details(int? id)
+
         {
             if (id == null)
             {
@@ -72,7 +75,9 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create([Bind("PizzaId,PizzzaName,Price,size,crust,topping")] Pizza pizza)
+
         {
             using (var client = new HttpClient())
             {

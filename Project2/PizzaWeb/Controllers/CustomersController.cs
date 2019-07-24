@@ -12,12 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
-{   [Authorize]
+{
+    [Authorize]
     public class CustomersController : Controller
     {
         //private readonly PizzaDbContext _context;
         private static string _url = "http://localhost:61219/api/";
-
 
 
         // GET: Customers
@@ -63,6 +63,7 @@ namespace PizzaWeb.Controllers
             {
                 return NotFound();
             }
+
             Customer customers = SearchCustomerId(User.Claims.First().Value);
             //Customer customers = SearchCustomer(id);
 
@@ -85,6 +86,7 @@ namespace PizzaWeb.Controllers
             //customer.UserId = UserManager.Users.First().Id;
             using (var client = new HttpClient())
             {
+
                 customer.UserId = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
                 Customer cust = SearchCustomerId(User.Claims.First().Value);
@@ -118,8 +120,10 @@ namespace PizzaWeb.Controllers
             {
                 return NotFound();
             }
+
             Customer customers = SearchCustomerId(User.Claims.First().Value);
             //Customer customers = SearchCustomer(id);
+
             return View(customers);
         }
 
@@ -128,7 +132,9 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public IActionResult Edit(int id, [Bind("CustomerId,Address,PhoneNo")] Customer customer)
+
         {
 
             using (var client = new HttpClient())

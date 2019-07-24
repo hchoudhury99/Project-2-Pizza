@@ -20,6 +20,7 @@ namespace PizzaWeb.Controllers
     public class OrdersController : Controller
     {
         private static string _url = "http://localhost:61219/api/";
+
         // GET: Orders
         public IActionResult Index()
         {
@@ -30,6 +31,7 @@ namespace PizzaWeb.Controllers
             {
                 client.BaseAddress = new Uri(_url);
                 //int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
+
 
                 var responseTask = client.GetAsync("Orders" );       
                 responseTask.Wait();
@@ -107,6 +109,7 @@ namespace PizzaWeb.Controllers
                  {
                      DateFormatHandling = DateFormatHandling.IsoDateFormat
                  });
+
                 int id = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
 
@@ -129,7 +132,7 @@ namespace PizzaWeb.Controllers
                     }
                     ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
                 }
-                ////
+
             }
 
             return View(order);

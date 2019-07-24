@@ -16,6 +16,11 @@ namespace PizzaWeb.Controllers
             return View();
         }
 
+        public IActionResult TopChoice()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

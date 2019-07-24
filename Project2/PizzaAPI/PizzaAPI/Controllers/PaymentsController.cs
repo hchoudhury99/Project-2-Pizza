@@ -24,7 +24,11 @@ namespace PizzaAPI.Controllers
         [HttpGet]
         public IEnumerable<Payment> GetPayment()
         {
+<<<<<<< HEAD
             return _context.Payment.Include("Customer");
+=======
+            return _context.Payment;
+>>>>>>> feat
         }
 
         // GET: api/Payments/5
@@ -86,7 +90,11 @@ namespace PizzaAPI.Controllers
         public async Task<IActionResult> PostPayment([FromRoute] int id, [FromBody] Payment payment)
         {
             //payment.Customer = SearchCustomer(id);
+<<<<<<< HEAD
             payment.CustomerId = SearchCustomer(id).CustomerId;
+=======
+           // payment.CustomerId = customer.CustomerId;
+>>>>>>> feat
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

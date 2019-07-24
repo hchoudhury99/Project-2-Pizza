@@ -85,6 +85,7 @@ namespace PizzaAPI.Controllers
         }
 
         // POST: api/Orders
+<<<<<<< HEAD
         [HttpPost("{id}")]
         public async Task<IActionResult> PostOrder([FromRoute] int id, [FromBody] Order order)
         {
@@ -93,6 +94,14 @@ namespace PizzaAPI.Controllers
             order.CustomerId = customer.CustomerId;
             order.Customer = customer;
            //customer.Order.add(order);
+=======
+        [HttpPost]
+        public async Task<IActionResult> PostOrder([FromBody] Order order)
+        {
+            //var customer = _context.Customer.FirstOrDefault(x => x.UserId == order.Customer.UserId);
+            //order.Customer = SearchCustomer(id);
+            //customer.Order.add(order);
+>>>>>>> feat
             //order.Customer.CustomerId = customer.CustomerId;
             if (!ModelState.IsValid)
             {

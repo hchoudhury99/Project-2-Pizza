@@ -17,11 +17,36 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class PaymentsController : Controller
     {
-        private static string _url = "http://localhost:61219/api/";
+        private static string _url = "http://localhost:63461/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Payment> payments = GetAllPayment();
+            IEnumerable<Payment> payments = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+                //HTTP GET
+                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
+                var responseTask = client.GetAsync("Payments");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Payment>>();
+                    readTask.Wait();
+
+                    payments = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    payments = Enumerable.Empty<Payment>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
             //Customer c = SearchCustomerId(User.Claims.First().Value);
             //payments = payments.Where(x => x.CustomerId == c.CustomerId);
             return View(payments);
@@ -62,21 +87,15 @@ namespace PizzaWeb.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_url);
-                //HTTP GET
-                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
+
                 int id = Convert.ToInt32(User.Claims.First().Value);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-
-                //var data = JsonConvert.SerializeObject(payment);
-                //var jsonData = new StringContent(data, Encoding.UTF8, "application/json");
-                //Customer c = SearchCustomerId(User.Claims.First().Value);
-                //payment.CustomerId = c.CustomerId;
-                
                 Customer cust = SearchCustomerId(User.Claims.First().Value);
                 Payment payments = GetAllPayment().FirstOrDefault(x=>x.CustomerId==cust.CustomerId);
+
                 if (cust == null||payments!=null)
                 {
 
@@ -117,7 +136,9 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CardNo,CustomerId")] Payment payment)
+
         {
             if (id != payment.PaymentId)
             {
@@ -247,6 +268,7 @@ namespace PizzaWeb.Controllers
 
             return customers;
         }
+
 
         private IEnumerable<Payment> GetAllPayment()
         {
