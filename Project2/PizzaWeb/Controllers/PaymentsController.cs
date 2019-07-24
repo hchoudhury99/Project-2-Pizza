@@ -15,7 +15,7 @@ namespace PizzaWeb.Controllers
 {
     public class PaymentsController : Controller
     {
-        private static string _url = "http://localhost:63875/api/";
+        private static string _url = "http://localhost:63461/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {
@@ -45,8 +45,8 @@ namespace PizzaWeb.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            Customer c = SearchCustomerId(User.Claims.First().Value);
-            payments = payments.Where(x => x.CustomerId == c.CustomerId);
+            //Customer c = SearchCustomerId(User.Claims.First().Value);
+            //payments = payments.Where(x => x.CustomerId == c.CustomerId);
             return View(payments);
         }
 

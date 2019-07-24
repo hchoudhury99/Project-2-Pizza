@@ -17,7 +17,7 @@ namespace PizzaWeb.Controllers
 {
     public class OrdersController : Controller
     {
-        private static string _url = "http://localhost:63875/api/";
+        private static string _url = "http://localhost:63461/api/";
         // GET: Orders
         public IActionResult Index()
         {
@@ -59,7 +59,7 @@ namespace PizzaWeb.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
                 //int userid = Convert.ToInt32(User.Claims.First().Value);
-                Customer c = SearchCustomerId(User.Claims.First().Value);
+                //Customer c = SearchCustomerId(User.Claims.First().Value);
                 //Orders = Orders.Where(x => x.Customer.CustomerId == c.CustomerId);
                 //ViewBag.CustomerID = c.CustomerId;
                 if (Orders == null)
