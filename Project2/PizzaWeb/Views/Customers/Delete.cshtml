@@ -12,10 +12,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.CustomerId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.CustomerId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PhoneNo)
@@ -37,3 +37,25 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+<script>
+    $('#btn btn-default').click(function (e) {
+        var url = "http://localhost:56782/api/customers/" + CustomerId;
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: "DELETE",
+            contentType: 'application/json; charset=utf-8',
+            //data: JSON.stringify({ id: 11 }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function () {
+                alert('Success!');
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    });
+</script>

@@ -39,7 +39,7 @@ namespace PizzaAPI
             {
                 options.AddPolicy("CorsPolicy",
                     builder =>
-                    builder.WithOrigins("http://localhost:44350")
+                    builder.WithOrigins("http://localhost:44350", "http://localhost")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());

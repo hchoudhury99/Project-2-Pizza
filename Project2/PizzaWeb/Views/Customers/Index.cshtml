@@ -17,7 +17,7 @@
     <thead>
         <tr>
             <th>
-                <label>First name</label><br/>
+                <label>First name</label><br />
             </th>
             <th>
                 <label>Last name</label><br />
@@ -37,7 +37,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-        
+
             @if (UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id == item.UserId)
             {
                 <tr>
@@ -47,7 +47,7 @@
                     <td>
                         @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname
                     </td>
-                    
+
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerId)
                     </td>
@@ -64,7 +64,31 @@
                     </td>
                 </tr>
             }
-        
+
         }
     </tbody>
 </table>
+
+@*<script>
+    function Delete(event) {
+        var id = parseInt(event.target.id);
+            var url = "http://localhost:56782/api/customers/" + id;
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "DELETE",
+                contentType: 'application/json; charset=utf-8',
+                //data: JSON.stringify({ id: 15 }),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function () {
+                    alert("yes");
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        
+    }
+</script>*@
