@@ -67,6 +67,7 @@ namespace PizzaAPI.Model
             return temp;
         }
         public Order Order { get; set; }
+        public int OrderId { get; set; }
 
     }
 }
