@@ -7,72 +7,6 @@
     ViewData["Title"] = "Create";
 }
 
-<<<<<<< HEAD
-<h2>Create</h2>
-
-<h4>Customer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label class="control-label"> First name: </label>
-                @UserManager.Users.First().Firstname
-            </div>
-            <div class="form-group">
-                <label class="control-label"> Last name: </label>
-                @UserManager.Users.First().Lastname
-            </div>
-            <div class="form-group">
-                <label class="control-label"> Email: </label>
-                @UserManager.Users.First().Email
-            </div>
-
-            <div class="form-group">
-                <label asp-for="PhoneNo" class="control-label"></label>
-                <input asp-for="PhoneNo" class="form-control" />
-                <span asp-validation-for="PhoneNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-<script>
-    $('#btn btn-default').click(function (e) {
-        var url = "http://localhost:56782/api/customers";
-        $.ajax({
-            contentType: 'application/json',
-            type: "POST",
-            url: url,
-            data: JSON.stringify(Customer),
-            success: function (data, textStatus, jqXHR) {
-                $("#postResult").val("Person created ok. Id=" + jqXHR.responseText);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $("#postResult").val(jqXHR.statusText);
-            }
-        });
-    });
-</script>
-=======
 
     <head>
         <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
@@ -128,4 +62,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
->>>>>>> feat

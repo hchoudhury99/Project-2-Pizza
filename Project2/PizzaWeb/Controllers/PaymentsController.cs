@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,6 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
-    [Authorize]
     public class PaymentsController : Controller
     {
         private static string _url = "http://localhost:63461/api/";
@@ -87,32 +85,33 @@ namespace PizzaWeb.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_url);
-
+                //JsonConvert.SerializeObject(payment, Formatting.Indented,
+                //     new JsonSerializerSettings
+                //     {
+                //         DateFormatHandling = DateFormatHandling.IsoDateFormat
+                //     });
+                //HTTP GET
+                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
                 int id = Convert.ToInt32(User.Claims.First().Value);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
-                Customer cust = SearchCustomerId(User.Claims.First().Value);
-                Payment payments = GetAllPayment().FirstOrDefault(x=>x.CustomerId==cust.CustomerId);
 
-                if (cust == null||payments!=null)
+                //var data = JsonConvert.SerializeObject(payment);
+                //var jsonData = new StringContent(data, Encoding.UTF8, "application/json");
+                Customer c = SearchCustomerId(User.Claims.First().Value);
+                payment.CustomerId = c.CustomerId;
+
+                var postTask = client.PostAsJsonAsync("Payments/" +id, payment);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-
-                    ModelState.AddModelError(string.Empty, "Customer or payment information already created! Please use the exist one or update it.");
+                    return RedirectToAction("Index");
                 }
-                else
-                {
-                    var postTask = client.PostAsJsonAsync("Payments/" + id, payment);
-                    postTask.Wait();
-
-                    var result = postTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-                }
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
             }
             //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id", payment.CustomerID);
             return View(payment);
@@ -136,9 +135,7 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CardNo,CustomerId")] Payment payment)
-
+        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CardNumber,ExpireDate,CVV,CustomerID")] Payment payment)
         {
             if (id != payment.PaymentId)
             {
@@ -267,38 +264,6 @@ namespace PizzaWeb.Controllers
             }
 
             return customers;
-        }
-
-
-        private IEnumerable<Payment> GetAllPayment()
-        {
-            IEnumerable<Payment> payments = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(_url);
-                //HTTP GET
-                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-                var responseTask = client.GetAsync("Payments");
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<IList<Payment>>();
-                    readTask.Wait();
-
-                    payments = readTask.Result;
-                }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    payments = Enumerable.Empty<Payment>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
-            }
-            return payments;
         }
     }
 }
