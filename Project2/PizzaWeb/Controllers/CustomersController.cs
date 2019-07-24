@@ -16,7 +16,7 @@ namespace PizzaWeb.Controllers
     public class CustomersController : Controller
     {
         //private readonly PizzaDbContext _context;
-        private static string _url = "http://localhost:61219/api/";
+        private static string _url = "http://localhost:63461/api/";
 
 
 
