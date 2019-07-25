@@ -38,9 +38,11 @@
                 
                 <select asp-for="Size">
 
+                    <option value="@Size.ExtraSmall">Extra Small</option>
                     <option value="@Size.Small">Small</option>
                     <option value="@Size.Medium">Medium</option>
                     <option value="@Size.Large">Large</option>
+                    <option value="@Size.ExtraLarge">Extra Large</option>
 
                 </select>
 
@@ -54,6 +56,11 @@
                     <option value="@Crust.cheeseCrust">Cheese Crust</option>
                     <option value="@Crust.thickCrust">Thick Crust</option>
                     <option value="@Crust.thinCrust">Thin Crust</option>
+                    <option value="@Crust.handtossedCrust">Hand Tossed Crust</option>
+                    <option value="@Crust.crunchyCrust">Crunchy Crust</option>
+                    <option value="@Crust.brooklynstyleCrust">Brooklyn Style Crust</option>
+                    <option value="@Crust.glutenfreeCrust">Gluten Free Crust</option>
+                    <option value="@Crust.softNpuffyCrust">softNpuffy Crust</option>
 
                 </select>
                 <span asp-validation-for="Crust" class="text-danger"></span>
@@ -65,6 +72,14 @@
 
                     <option value="@Sauce.garlicSauce"> Garlic Sauce</option>
                     <option value="@Sauce.tomatoeSauce"> Tomato Sauce</option>
+                    <option value="@Sauce.pestoSauce"> Pesto Sauce</option>
+                    <option value="@Sauce.BechamelSauce"> Bechamel Sauce</option>
+                    <option value="@Sauce.SalsaSauce"> Salsa Sauce</option>
+                    <option value="@Sauce.BBQSauce"> BBQ Sauce</option>
+                    <option value="@Sauce.hummusSauce"> Hummus Sauce</option>
+                    <option value="@Sauce.pumpkinSauce"> Pumpkin Sauce</option>
+                    <option value="@Sauce.ranchSauce"> Ranch Sauce</option>
+                    <option value="@Sauce.wasabiSauce"> Wasabi Sauce</option>
 
                 </select>
                 <span asp-validation-for="Sauce" class="text-danger"></span>
@@ -72,9 +87,22 @@
 
             <div class="textbox">
                 <label asp-for="Topping1" class="control-label"></label>
-                <select asp-for="Topping1" >
+                <select asp-for="Topping1">
 
-                    <option></option>
+                    <option value="@Topping.beef"> Beef</option>
+                    <option value="@Topping.chicken"> Chicken</option>
+                    <option value="@Topping.greenpeppers"> Green Pepper</option>
+                    <option value="@Topping.onion"> Onion</option>
+                    <option value="@Topping.pork"> Pork</option>
+                    <option value="@Topping.spinach"> Spinach</option>
+                    <option value="@Topping.Mushrooms"> Mushrooms</option>
+                    <option value="@Topping.Tomatoes"> Tomatoes</option>
+                    <option value="@Topping.Olives"> Olives</option>
+                    <option value="@Topping.Pepperoni"> Pepperoni</option>
+                    <option value="@Topping.Sausage"> Sausage</option>
+                    <option value="@Topping.RedPepper"> Red Pepper</option>
+                    <option value="@Topping.Artichokes"> Artichokes</option>
+                    <option value="@Topping.Basil"> Basil</option>
 
                 </select>
                 <span asp-validation-for="Topping1" class="text-danger"></span>
@@ -82,13 +110,47 @@
 
             <div class="textbox">
                 <label asp-for="Topping2" class="control-label"></label>
-                <input asp-for="Topping2"  />
+                <select asp-for="Topping2">
+
+                    <option value="@Topping.beef"> Beef</option>
+                    <option value="@Topping.chicken"> Chicken</option>
+                    <option value="@Topping.greenpeppers"> Green Pepper</option>
+                    <option value="@Topping.onion"> Onion</option>
+                    <option value="@Topping.pork"> Pork</option>
+                    <option value="@Topping.spinach"> Spinach</option>
+                    <option value="@Topping.Mushrooms"> Mushrooms</option>
+                    <option value="@Topping.Tomatoes"> Tomatoes</option>
+                    <option value="@Topping.Olives"> Olives</option>
+                    <option value="@Topping.Pepperoni"> Pepperoni</option>
+                    <option value="@Topping.Sausage"> Sausage</option>
+                    <option value="@Topping.RedPepper"> Red Pepper</option>
+                    <option value="@Topping.Artichokes"> Artichokes</option>
+                    <option value="@Topping.Basil"> Basil</option>
+
+                </select>
                 <span asp-validation-for="Topping2" class="text-danger"></span>
             </div>
 
             <div class="textbox">
                 <label asp-for="Topping3" class="control-label"></label>
-                <input asp-for="Topping3" />
+                <select asp-for="Topping3">
+
+                    <option value="@Topping.beef"> Beef</option>
+                    <option value="@Topping.chicken"> Chicken</option>
+                    <option value="@Topping.greenpeppers"> Green Pepper</option>
+                    <option value="@Topping.onion"> Onion</option>
+                    <option value="@Topping.pork"> Pork</option>
+                    <option value="@Topping.spinach"> Spinach</option>
+                    <option value="@Topping.Mushrooms"> Mushrooms</option>
+                    <option value="@Topping.Tomatoes"> Tomatoes</option>
+                    <option value="@Topping.Olives"> Olives</option>
+                    <option value="@Topping.Pepperoni"> Pepperoni</option>
+                    <option value="@Topping.Sausage"> Sausage</option>
+                    <option value="@Topping.RedPepper"> Red Pepper</option>
+                    <option value="@Topping.Artichokes"> Artichokes</option>
+                    <option value="@Topping.Basil"> Basil</option>
+
+                </select>
                 <span asp-validation-for="Topping3" class="text-danger"></span>
             </div>
 
