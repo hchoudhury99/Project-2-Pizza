@@ -19,7 +19,7 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class OrdersController : Controller
     {
-        private static string _url = "http://localhost:63461/api/";
+        private static string _url = "http://localhost:56782/api/";
         // GET: Orders
         public IActionResult Index()
         {
@@ -64,10 +64,7 @@ namespace PizzaWeb.Controllers
                 //Customer c = SearchCustomerId(User.Claims.First().Value);
                 //Orders = Orders.Where(x => x.Customer.CustomerId == c.CustomerId);
                 //ViewBag.CustomerID = c.CustomerId;
-                if (Orders == null)
-                {
-                    Orders = Enumerable.Empty<Order>();
-                }
+ 
                 return View(Orders);
             }
         }
@@ -118,21 +115,28 @@ namespace PizzaWeb.Controllers
                  {
                      DateFormatHandling = DateFormatHandling.IsoDateFormat
                  });
-                //int id = Convert.ToInt32(User.Claims.First().Value);
+                int id = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
-       
-                Customer c = SearchCustomerId(User.Claims.First().Value);
-                order.CustomerId = c.CustomerId;
 
-                var postTask = client.PostAsJsonAsync("Orders", order);
-
-                postTask.Wait();
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                Customer cust = SearchCustomerId(User.Claims.First().Value);
+                if (cust == null)
                 {
-                    return RedirectToAction("Index");
+
+                    ModelState.AddModelError(string.Empty, "Customer not found! Please create a customer before ordering.");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                else
+                {
+                    order.CustomerId = cust.CustomerId;
+                    var postTask = client.PostAsJsonAsync("Orders/" + id, order);
+
+                    postTask.Wait();
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                }
                 ////
             }
 

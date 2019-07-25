@@ -43,10 +43,6 @@ namespace PizzaWeb.Controllers
             return View();
         }
 
-        public IActionResult TopChoice()
-        {
-            return View();
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

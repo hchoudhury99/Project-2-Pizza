@@ -17,7 +17,7 @@ namespace PizzaWeb.Controllers
     public class CustomersController : Controller
     {
         //private readonly PizzaDbContext _context;
-        private static string _url = "http://localhost:63461/api/";
+        private static string _url = "http://localhost:56782/api/";
 
 
 
@@ -64,8 +64,8 @@ namespace PizzaWeb.Controllers
             {
                 return NotFound();
             }
-            Customer customers = SearchCustomer(id);
-
+            
+            Customer customers = SearchCustomerId(User.Claims.First().Value);
             return View(customers);
         }
 
@@ -83,23 +83,29 @@ namespace PizzaWeb.Controllers
 
         public IActionResult Create([Bind("CustomerId,UserId, Address,PhoneNo")] Customer customer)
         {
-            //customer.UserId = UserManager.Users.First().Id;
             using (var client = new HttpClient())
             {
-                int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
-                customer.UserId = CurrentUserId;
+                customer.UserId = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
-                //HTTP GET
-                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-                var postTask = client.PostAsJsonAsync("Customers", customer);
-                postTask.Wait();
-
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                Customer cust = SearchCustomerId(User.Claims.First().Value);
+                if (cust != null)
                 {
-                    return RedirectToAction("Index");
+
+                    ModelState.AddModelError(string.Empty, "Customer already created. You are only allow to create one customer per account.");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                else
+                {
+                    //HTTP GET
+                    var postTask = client.PostAsJsonAsync("Customers", customer);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                }
             }
 
             return View(customer);
@@ -113,7 +119,7 @@ namespace PizzaWeb.Controllers
                 return NotFound();
             }
 
-            Customer customers = SearchCustomer(id);
+            Customer customers = SearchCustomerId(User.Claims.First().Value);
             return View(customers);
         }
 
