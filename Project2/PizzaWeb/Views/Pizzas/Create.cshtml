@@ -4,6 +4,27 @@
     ViewData["Title"] = "Create";
 }
 
+<<<<<<< HEAD
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/CreatePage.css" />
+    <style>
+        body {
+            font-family: 'Comfortaa', cursive;
+        }
+
+        .box {
+            position: fixed;
+            top: 15%;
+            left: 20%;
+        }
+    </style>
+</head>
+
+
+
+=======
    
 <head>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
@@ -22,28 +43,53 @@
 
 
  
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
 <body>
     <div class="box">
         <h2>Create Pizza</h2>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="textbox">
+<<<<<<< HEAD
+                <input asp-for="PizzaName" placeholder="Pizza Name" />
+=======
                 <input asp-for="PizzaName"  placeholder="Pizza Name"/>
+<<<<<<< HEAD
                 <span asp-validation-for="PizzaName" class="text-danger" ></span>
             </div>
             <div class="textbox">
                 <label asp-for="Size" class="control-label"></label>
                 <select asp-for="Size" ></select>
+=======
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
+                <span asp-validation-for="PizzaName" class="text-danger"></span>
+            </div>
+            <div class="textbox">
+                <label asp-for="Size" class="control-label"></label>
+<<<<<<< HEAD
+                <select asp-for="Size"></select>
+=======
+                <select asp-for="Size"  ></select>
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
+>>>>>>> dc0e459bea702774c40626dfd7534a13103421f6
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
             <div class="textbox">
                 <label asp-for="Crust" class="control-label"></label>
+<<<<<<< HEAD
+                <select asp-for="Crust"></select>
+=======
                 <select asp-for="Crust" ></select>
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
                 <span asp-validation-for="Crust" class="text-danger"></span>
             </div>
             <div class="textbox">
                 <label asp-for="Sauce" class="control-label"></label>
+<<<<<<< HEAD
+                <select asp-for="Sauce"></select>
+=======
                 <select asp-for="Sauce" ></select>
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
                 <span asp-validation-for="Sauce" class="text-danger"></span>
             </div>
             <div class="textbox">
@@ -53,7 +99,11 @@
             </div>
             <div class="textbox">
                 <label asp-for="Topping2" class="control-label"></label>
+<<<<<<< HEAD
+                <input asp-for="Topping2" />
+=======
                 <input asp-for="Topping2"  />
+>>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
                 <span asp-validation-for="Topping2" class="text-danger"></span>
             </div>
             <div class="textbox">
