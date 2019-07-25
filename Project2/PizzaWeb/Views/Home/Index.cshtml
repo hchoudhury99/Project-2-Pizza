@@ -38,7 +38,6 @@
         #item:hover{
               background-position: right;
               text-decoration: none;
-              transform: scale(1.2);
         }
         img{
             width: 85px;
@@ -52,12 +51,13 @@
 
     <div id="btn1">
         <img src="~/images/819861.png" alt="image" />
-        
-        <a asp-action="TopChoice" id="item" >TOP CHOICE</a>
+
+        <a id="item" asp-action="TopChoice">TOP CHOICE</a>
+
     </div>
     <div id="btn2">
         <img src="~/images/819861.png" alt="image" />
-        <button id="item">MAKE MY OWN</button>
+        <a id="item">MAKE MY OWN</a>
     </div>
 
 

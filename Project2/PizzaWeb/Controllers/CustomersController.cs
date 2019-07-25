@@ -12,11 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
-{   [Authorize]
+{
+    [Authorize]
     public class CustomersController : Controller
     {
         //private readonly PizzaDbContext _context;
-        private static string _url = "http://localhost:61219/api/";
+        private static string _url = "http://localhost:63461/api/";
 
 
 
@@ -63,8 +64,7 @@ namespace PizzaWeb.Controllers
             {
                 return NotFound();
             }
-            Customer customers = SearchCustomerId(User.Claims.First().Value);
-            //Customer customers = SearchCustomer(id);
+            Customer customers = SearchCustomer(id);
 
             return View(customers);
         }
@@ -86,27 +86,20 @@ namespace PizzaWeb.Controllers
             //customer.UserId = UserManager.Users.First().Id;
             using (var client = new HttpClient())
             {
-                customer.UserId = Convert.ToInt32(User.Claims.First().Value);
+                int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
+                customer.UserId = CurrentUserId;
                 client.BaseAddress = new Uri(_url);
-                Customer cust = SearchCustomerId(User.Claims.First().Value);
-                if (cust != null)
-                {
+                //HTTP GET
+                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
+                var postTask = client.PostAsJsonAsync("Customers", customer);
+                postTask.Wait();
 
-                    ModelState.AddModelError(string.Empty, "Customer already created. You are only allow to create one customer per account.");
-                }
-                else
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    //HTTP GET
-                    var postTask = client.PostAsJsonAsync("Customers", customer);
-                    postTask.Wait();
-
-                    var result = postTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                    return RedirectToAction("Index");
                 }
+                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
             }
 
             return View(customer);
@@ -119,8 +112,8 @@ namespace PizzaWeb.Controllers
             {
                 return NotFound();
             }
-            Customer customers = SearchCustomerId(User.Claims.First().Value);
-            //Customer customers = SearchCustomer(id);
+
+            Customer customers = SearchCustomer(id);
             return View(customers);
         }
 
@@ -129,7 +122,7 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("CustomerId,Address,PhoneNo")] Customer customer)
+        public IActionResult Edit(int id, [Bind("id,Address,Firstname,Lastname,PhoneNumber")] Customer customer)
         {
 
             using (var client = new HttpClient())
