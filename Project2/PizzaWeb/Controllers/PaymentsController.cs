@@ -23,7 +23,13 @@ namespace PizzaWeb.Controllers
         {
             Customer cust = SearchCustomerId(User.Claims.First().Value);
             IEnumerable<Payment> payments = GetAllPayment();
-            return View(payments.FirstOrDefault(x=>x.CustomerId==cust.CustomerId));
+            //payments = payments.Where(x => x.CustomerId == cust.CustomerId);
+            //if (payments == null)
+            //{
+            //    payments = Enumerable.Empty<Payment>();
+            //}
+
+            return View(payments);
         }
 
         // GET: Payments/Details/5
@@ -56,7 +62,7 @@ namespace PizzaWeb.Controllers
                 client.BaseAddress = new Uri(_url);
                 //HTTP GET
                 // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-               // int id = Convert.ToInt32(User.Claims.First().Value);
+                int id = Convert.ToInt32(User.Claims.First().Value);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
@@ -68,11 +74,11 @@ namespace PizzaWeb.Controllers
                 //payment.CustomerId = c.CustomerId;
 
                 Customer cust = SearchCustomerId(User.Claims.First().Value);
-                Payment payments = GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId);
-                if (cust == null || payments != null)
+                //Payment payments = GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId);
+                if (cust == null || GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId) != null)
                 {
 
-                    ModelState.AddModelError(string.Empty, "Customer or payment information already created! Please use the exist one or update it.");
+                    ModelState.AddModelError(string.Empty, "Customer or payment information no exist! Please use the create one or update it.");
                 }
                 else
                 {
