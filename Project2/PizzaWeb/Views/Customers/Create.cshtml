@@ -19,42 +19,43 @@
     </head>
 
 
+        <div class="box">
+            <h2>Create Customer</h2>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="box">
-    <h2>Create Customer</h2>
-    <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label"> First name: </label>
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Firstname
+                </div>
+                <div class="form-group">
+                    <label class="control-label"> Last name: </label>
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname
+                </div>
+                <div class="form-group">
+                    <label class="control-label"> Email: </label>
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Email
+                </div>
 
-        <div class="form-group">
-            <label class="control-label"> First name: </label>
-            @UserManager.Users.First().Firstname
-        </div>
-        <div class="form-group">
-            <label class="control-label"> Last name: </label>
-            @UserManager.Users.First().Lastname
-        </div>
-        <div class="form-group">
-            <label class="control-label"> Email: </label>
-            @UserManager.Users.First().Email
-        </div>
+                <div class="textbox">
 
-        <div class="textbox">
+                    <input asp-for="PhoneNo" placeholder="Phone #" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+                <div class="textbox">
 
-            <input asp-for="PhoneNo" placeholder="Phone #" />
-            <span asp-validation-for="PhoneNo" class="text-danger"></span>
-        </div>
-        <div class="textbox">
 
-            <input asp-for="Address" placeholder="Address" />
-            <span asp-validation-for="Address" class="text-danger"></span>
-        </div>
+                    <input asp-for="Address" placeholder="Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn" />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn" />
+                </div>
+            </form>
+            <button class="btn" id="create">Create</button>
+            <a asp-action="Index">Back to List</a>
         </div>
-    </form>
-    <a asp-action="Index">Back to List</a>
-</div>
 
     
 
@@ -62,3 +63,65 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    @*$('#create').click(function (e) {
+        console.log("yes");
+        console.log(@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id);
+        var url = "http://localhost:56782/api/Customers/";
+        @*var dataObject = JSON.stringify({
+            "UserId" : @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id,
+            "PhoneNo": $('#PhoneNo').val(),
+            "Address": $('#Address').val()
+        });*@
+
+        @*var customer = '{UserId: "' + @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id +'", PhoneNo: "' + $("#PhoneNo").val() + '", Address: "' + $("#Address").val() + '" }';
+        var person = { 'UserId': @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id };
+        console.log(customer);
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: customer,
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (dataObject) {
+                alert('Success!');
+                return dataObject;
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    });*@
+
+    $("#create").click(function (e) {
+        var url = "http://localhost:56782/api/Customers";
+        //var userid=@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id;
+        $.ajax({
+            contentType: "application/json",
+            type: "POST",
+            url: url,
+            xhrFields: {
+                withCredentials: true
+            },
+            data: JSON.stringify({
+                //UserId : userid,
+                Address: $("#Address").val(),
+                PhoneNo: $("#PhoneNo").val(),
+                
+            }),
+            success: function (data, textStatus, jqXHR) {
+                // $("#postresult").val("Customer created." + jqXHR.responseText);
+                console.log(jqXHR.responseText);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //$("#postresult").val(jqXHR.statusText);
+                console.log(data);
+            }
+        });
+    });
+</script>
+

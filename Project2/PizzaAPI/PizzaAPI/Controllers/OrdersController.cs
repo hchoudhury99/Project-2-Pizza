@@ -83,20 +83,21 @@ namespace PizzaAPI.Controllers
 
             return NoContent();
         }
-
         // POST: api/Orders
-        [HttpPost]
-        public async Task<IActionResult> PostOrder([FromBody] Order order)
+        [HttpPost("{id}")]
+        public async Task<IActionResult> PostOrder([FromRoute] int id, [FromBody] Order order)
         {
-            //var customer = _context.Customer.FirstOrDefault(x => x.UserId == order.Customer.UserId);
+            var customer = _context.Customer.FirstOrDefault(x => x.UserId == id);
             //order.Customer = SearchCustomer(id);
+            order.CustomerId = customer.CustomerId;
+            order.Customer = customer;
             //customer.Order.add(order);
             //order.Customer.CustomerId = customer.CustomerId;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-           // order.Customer = null;
+            // order.Customer = null;
             _context.Order.Add(order);
             //order.Customer = null;
             await _context.SaveChangesAsync();

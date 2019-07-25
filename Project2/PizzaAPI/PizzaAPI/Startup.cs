@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace PizzaAPI
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -39,14 +42,18 @@ namespace PizzaAPI
             {
                 options.AddPolicy("CorsPolicy",
                     builder =>
-                    builder.WithOrigins("http://localhost:63874")
+                    builder.WithOrigins("http://localhost:44350")
                     .AllowAnyMethod()
+                    .AllowAnyOrigin()
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
 
             services.AddDbContext<PizzaDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("APIConnection")));
+
+            services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton(Configuration);
             //services.AddScoped<ICustomer, CustomerBLL>();
@@ -62,8 +69,29 @@ namespace PizzaAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
+            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors("CorsPolicy");
+
+            //app.UseCors(MyAllowSpecificOrigins);
+            // Shows UseCors with CorsPolicyBuilder.
+            //app.UseCors(builder =>
+            //{
+            //    //builder.WithOrigins("http://localhost:58318");
+            //    builder.AllowAnyOrigin();
+            //});
+
+            // Add these 2 lines for jQuery calls to API.
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            //
             app.UseMvc();
         }
     }
 }
+
