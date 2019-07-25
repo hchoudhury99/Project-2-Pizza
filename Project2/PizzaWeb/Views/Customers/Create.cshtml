@@ -26,15 +26,15 @@
 
                 <div class="form-group">
                     <label class="control-label"> First name: </label>
-                    @UserManager.Users.First().Firstname
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Firstname
                 </div>
                 <div class="form-group">
                     <label class="control-label"> Last name: </label>
-                    @UserManager.Users.First().Lastname
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname
                 </div>
                 <div class="form-group">
                     <label class="control-label"> Email: </label>
-                    @UserManager.Users.First().Email
+                    @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Email
                 </div>
 
                 <div class="textbox">

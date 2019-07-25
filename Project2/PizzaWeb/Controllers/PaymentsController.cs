@@ -21,8 +21,9 @@ namespace PizzaWeb.Controllers
         // GET: Payments
         public async Task<IActionResult> Index()
         {
+            Customer cust = SearchCustomerId(User.Claims.First().Value);
             IEnumerable<Payment> payments = GetAllPayment();
-            return View(payments);
+            return View(payments.FirstOrDefault(x=>x.CustomerId==cust.CustomerId));
         }
 
         // GET: Payments/Details/5
@@ -55,7 +56,7 @@ namespace PizzaWeb.Controllers
                 client.BaseAddress = new Uri(_url);
                 //HTTP GET
                 // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-                int id = Convert.ToInt32(User.Claims.First().Value);
+               // int id = Convert.ToInt32(User.Claims.First().Value);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
