@@ -70,25 +70,27 @@
 </table>
 
 @*<script>
-    function Delete(event) {
-        var id = parseInt(event.target.id);
-            var url = "http://localhost:56782/api/customers/" + id;
-            $.ajax({
-                url: url,
-                dataType: "json",
-                type: "DELETE",
-                contentType: 'application/json; charset=utf-8',
-                //data: JSON.stringify({ id: 15 }),
-                async: true,
-                processData: false,
-                cache: false,
-                success: function () {
-                    alert("yes");
-                },
-                error: function (xhr) {
-                    alert('error');
-                }
-            });
-        
-    }
-</script>*@
+        function Delete(event) {
+
+            event.preventDefault();
+            var id = parseInt(event.target.id);
+                var url = "http://localhost:56782/api/customers/" + id;
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "DELETE",
+                    contentType: 'application/json; charset=utf-8',
+                    //data: JSON.stringify({ id: 15 }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        alert("yes");
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+
+        }
+    </script>*@

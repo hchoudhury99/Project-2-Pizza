@@ -30,20 +30,22 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="PhoneNo" class="control-label"></label>
-                <input asp-for="PhoneNo" class="form-control" />
+                <label asp-for="PhoneNo"  class="control-label"></label>
+                <input asp-for="PhoneNo" id="PhoneNo" class="form-control" />
                 <span asp-validation-for="PhoneNo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
+                <input asp-for="Address" id="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+            
         </form>
+        <button class="btn" id="create">Create</button>
     </div>
 </div>
 
@@ -55,18 +57,61 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
-    $('#btn btn-default').click(function (e) {
-        var url = "http://localhost:56782/api/customers";
+    @*$('#create').click(function (e) {
+        console.log("yes");
+        console.log(@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id);
+        var url = "http://localhost:56782/api/Customers/";
+        @*var dataObject = JSON.stringify({
+            "UserId" : @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id,
+            "PhoneNo": $('#PhoneNo').val(),
+            "Address": $('#Address').val()
+        });*@
+
+        @*var customer = '{UserId: "' + @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id +'", PhoneNo: "' + $("#PhoneNo").val() + '", Address: "' + $("#Address").val() + '" }';
+        var person = { 'UserId': @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id };
+        console.log(customer);
         $.ajax({
-            contentType: 'application/json',
+            url: url,
+            dataType: "jsonp",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: customer,
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (dataObject) {
+                alert('Success!');
+                return dataObject;
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    });*@
+
+    $("#create").click(function (e) {
+        var url = "http://localhost:56782/api/Customers";
+        //var userid=@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id;
+        $.ajax({
+            contentType: "application/json",
             type: "POST",
             url: url,
-            data: JSON.stringify(Customer),
+            xhrFields: {
+                withCredentials: true
+            },
+            data: JSON.stringify({
+                //UserId : userid,
+                Address: $("#Address").val(),
+                PhoneNo: $("#PhoneNo").val(),
+                
+            }),
             success: function (data, textStatus, jqXHR) {
-                $("#postResult").val("Person created ok. Id=" + jqXHR.responseText);
+                // $("#postresult").val("Customer created." + jqXHR.responseText);
+                console.log(jqXHR.responseText);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $("#postResult").val(jqXHR.statusText);
+                //$("#postresult").val(jqXHR.statusText);
+                console.log(data);
             }
         });
     });

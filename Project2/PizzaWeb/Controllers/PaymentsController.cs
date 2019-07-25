@@ -45,13 +45,6 @@ namespace PizzaWeb.Controllers
             return View();
         }
 
-        // GET: Payments/Create
-        public IActionResult CreatePayment()
-        {
-            //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id");
-            return View();
-        }
-
         // POST: Payments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

@@ -80,6 +80,7 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public IActionResult Create([Bind("CustomerId,UserId, Address,PhoneNo")] Customer customer)
         {
             //customer.UserId = UserManager.Users.First().Id;
