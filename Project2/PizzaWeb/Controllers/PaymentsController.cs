@@ -82,7 +82,7 @@ namespace PizzaWeb.Controllers
                 }
                 else
                 {
-                    var postTask = client.PostAsJsonAsync("Payments/" + id, payment);
+                    var postTask = client.PostAsJsonAsync("Payments/" + cust.CustomerId, payment);
                     postTask.Wait();
 
                     var result = postTask.Result;

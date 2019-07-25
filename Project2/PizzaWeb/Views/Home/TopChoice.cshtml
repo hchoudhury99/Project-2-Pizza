@@ -1,99 +1,312 @@
-﻿
+﻿@model PizzaAPI.Model.Pizza
 @{
     ViewData["Title"] = "TopChoice";
 }
 
 
 
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
-        <style>
-            .card {
-                border: 1px solid black;
-                text-align: center;
-                margin-bottom: 30px;
-            }
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <style>
+        .card {
+            border: 1px solid black;
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-            .card-title {
-                color: darkorange;
-            }
+        .card-title {
+            color: darkorange;
+        }
 
-            .btn-primary {
-                color: white;
-                background-color: cadetblue;
-                border-radius: 8px;
-                padding-left: 5px;
-                padding-right: 5px;
+        .btn-primary {
+            color: white;
+            background-color: cadetblue;
+            border-radius: 8px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-decoration: none;
+        }
+
+            .btn-primary:hover {
                 text-decoration: none;
             }
 
-                .btn-primary:hover {
-                    text-decoration: none;
-                }
+        body {
+            background-image: url(/images/gkgd.jpg);
+            background-size: cover;
+            text-align: center;
+            font-family: 'Comfortaa', cursive;
+        }
 
-            body {
-                background-image: url(/images/gkgd.jpg);
-                background-size: cover;
-                text-align: center;
-                font-family: 'Comfortaa', cursive;
+        .outer {
+        }
+
+
+        .btn-back {
+            border: none;
+            padding: 10px;
+            width: 130%;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #ffffff;
+            opacity: 0.8;
+            background-size: 180%;
+            transition: 0.6s;
+            background-image: linear-gradient(to left, #ffc312, #ee5a24, #ffc312, cadetblue);
+        }
+
+            .btn-back:hover {
+                text-decoration: none;
+                background-position: right;
+                color: black;
             }
-
-            .outer {
-            }
-
-
-            .btn-back {
-                border: none;
-                padding: 10px;
-                width: 130%;
-                text-transform: uppercase;
-                border-radius: 10px;
-                cursor: pointer;
-                color: #ffffff;
-                opacity: 0.8;
-                background-size: 180%;
-                transition: 0.6s;
-                background-image: linear-gradient(to left, #ffc312, #ee5a24, #ffc312, cadetblue);
-            }
-
-                .btn-back:hover {
-                    text-decoration: none;
-                    background-position: right;
-                    color: black;
-                }
-        </style>
-    </head>
+    </style>
+</head>
 
 <body>
     <div class="box">
+        
         <div class="outer">
             <h1>Top Choice</h1>
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
-                    <img class="card-img-top" src="~/images/demo.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza Name</h5>
-                        <p class="card-text">Some description about this pizza.</p>
-                        <a href="#" class="btn btn-primary">Add To Cart</a>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Cheese Pie</h5>
+                    <img class="card-img-top" src="https://eatcaulipower.com/sites/default/files/product-images/Pizza-ThreeCheese_1.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Carefully Baked Original Cheese Pizza, With Creamy Tomato Sauce!</p>
+                    <p class="card-text">Small: $5 Medium: $8 Large: $11</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
                     </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
                 </div>
-            }
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Vegetable Pie</h5>
+                    <img class="card-img-top" src="https://eatcaulipower.ca/sites/default/files/product-images/Pizza-Veggie_6.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Delicious Veggie Pizza With Mushrooms, Tomatoes, and Olives! </p>
+                    <p class="card-text">Small: $9 Medium: $12 Large: $15</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Chicken Pie</h5>
+                    <img class="card-img-top" src="https://www.pcpizza.com/wp-content/uploads/2015/05/BBQChicken.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Delicious Pizza With Chicken Topping! </p>
+                    <p class="card-text">Small: $9 Medium: $12 Large: $15</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Beef Pie</h5>
+                    <img class="card-img-top" src="https://www.sccpre.cat/mypng/detail/18-182396_roasted-beef-tenderloin-crispy-bacon-mushrooms-onions-pizza.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Delicious Pizza With Thin Cut Seasoned Beef Topping! </p>
+                    <p class="card-text">Small: $9 Medium: $12 Large: $15</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Pepperoni Pie</h5>
+                    <img class="card-img-top" src="https://www.sccpre.cat/mypng/detail/18-182277_pepperoni-pizza-png.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Delicious Pizza With Pepperoni Topping! </p>
+                    <p class="card-text"> Small: $9 Medium: $12 Large: $15</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+
         </div>
 
+
         <div class="outer">
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
-                    <img class="card-img-top" src="~/images/demo.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza Name</h5>
-                        <p class="card-text">Some description about this pizza.</p>
-                        <a href="#" class="btn btn-primary">Add To Cart</a>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Sausage Pie</h5>
+                    <img class="card-img-top" src="https://www.pngkey.com/png/full/9-91204_sausage-pizza-california-style-pizza.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Delicious Pizza With Sausage Topping! </p>
+                    <p class="card-text">Small: $9 Medium: $12 Large: $15</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
                     </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
                 </div>
-            }
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Greek Pie</h5>
+                    <img class="card-img-top" src="http://www.queensboropizza.com/assets/images/products/3.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Greek Style Pizza With Rosted Red Pepper, Artichokes, and Basil Toppings! </p>
+                    <p class="card-text">Small: $12 Medium: $15 Large: $18</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Chicago Pie</h5>
+                    <img class="card-img-top" src="https://i.ya-webdesign.com/images/chicago-pizza-png-1.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Chicago Style Deep Dish Pizza! </p>
+                    <p class="card-text">Small: $12 Medium: $15 Large: $18</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Neapolitan Pie</h5>
+                    <img class="card-img-top" src="https://mymidici.com/devsite/wp-content/uploads/2017/12/NP-Margherita.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Original Naples Style Pizza With All Italian Ingredients! </p>
+                    <p class="card-text">Small: $12 Medium: $15 Large: $18</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Sicilian Pie</h5>
+                    <img class="card-img-top" src="https://www.trzcacak.rs/myfile/detail/1-15500_pizza-slice-images-pizza-sicilian-pizza-italian-pizza.png" alt="Cheese Pizza Image">
+                    <p class="card-text">Original Thick Crust Sicilian Pizza! </p>
+                    <p class="card-text">Small: $12 Medium: $15 Large: $18</p>
+
+                    <div class="textbox">
+                        <label asp-for="Size" class="control-label"></label>
+
+                        <select>
+                            <option value="@Size.Small">Small</option>
+                            <option value="@Size.Medium">Medium</option>
+                            <option value="@Size.Large">Large</option>
+                        </select>
+
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+
+                    <a href="http://localhost:63461/Payments" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
         </div>
+
         <a class="btn-back" asp-action="Index">Go Back</a>
+
     </div>
 </body>
