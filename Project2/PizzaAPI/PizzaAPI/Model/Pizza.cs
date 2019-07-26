@@ -16,7 +16,7 @@ namespace PizzaAPI.Model
     }
     public enum PizzaName
     {
-        chickenPizza, veggePizza, pepperoniePizza
+        chickenPizza, veggePizza, pepperoniePizza, Custom
     }
     public enum Sauce
     {

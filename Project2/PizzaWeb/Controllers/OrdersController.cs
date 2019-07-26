@@ -12,11 +12,21 @@ using Newtonsoft.Json;
 using PizzaAPI.Model;
 using System.Threading;
 using System.Net;
+using PizzaWeb.catalog;
+using System.Security.Claims;
 
 namespace PizzaWeb.Controllers
 {
+
     public class OrdersController : Controller
     {
+
+        private readonly CatalogContext _context;
+
+        public OrdersController(CatalogContext context)
+        {
+            _context = context;
+        }
         private static string _url = "http://localhost:56782/api/";
         // GET: Orders
         public IActionResult Index()
@@ -32,10 +42,10 @@ namespace PizzaWeb.Controllers
                 // Customer c = Customer.FirstOrDefault(x => x.UserId == CurrentUserId);
                 //HTTP GET
                 //Request.ContentType = User.Claims.First().Value;
-                
-                var responseTask = client.GetAsync("Orders" );       
+
+                var responseTask = client.GetAsync("Orders");
                 responseTask.Wait();
-                
+
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -89,6 +99,32 @@ namespace PizzaWeb.Controllers
             return View();
         }
 
+        public IActionResult SubmitOrder()
+        {
+
+            Order o = new Order();
+            o.CustomerId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            //o.Duetime = DateTime.Now;
+            o.Customer = SearchCustomerId(o.CustomerId.ToString());
+            //o.OrderDate = DateTime.Now;
+            List<Pizza> submitOrderPizza = new List<Pizza>();
+            foreach (var item in _context.TempPizzas)
+            {
+                //customer id is orderid in Webapi temp database
+                if (o.CustomerId == item.OrderId)
+                {
+                    submitOrderPizza.Add(item);
+                    //remove the item from in memory storage
+                    _context.TempPizzas.Remove(item);
+                }
+            }
+            o.Pizza = submitOrderPizza;
+            
+            //o.TotalPrice = o.TotalPrice();
+            //await Create(o);
+
+            return RedirectToAction("Create", o);
+        }
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -278,5 +314,13 @@ namespace PizzaWeb.Controllers
 
             return customers;
         }
+
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Orderpost(Microsoft.AspNetCore.Http.FormCollection form)
+        {
+
+            return Content("ok");
+        }*/
     }
 }
