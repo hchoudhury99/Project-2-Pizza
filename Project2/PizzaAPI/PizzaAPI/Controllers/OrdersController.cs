@@ -27,7 +27,7 @@ namespace PizzaAPI.Controllers
             //int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
             //Customer c=_context.Customer.FirstOrDefault(x => x.UserId == CurrentUserId);
             
-            return _context.Order;
+            return _context.Order.Include("Pizza").Include("Customer");
         }
 
         // GET: api/Orders/5
@@ -39,7 +39,7 @@ namespace PizzaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = await _context.Order.FindAsync(id);
+            var order =  _context.Order.Include("Pizza").Include("Customer").FirstOrDefault(x => x.OrderId == id);
 
             if (order == null)
             {

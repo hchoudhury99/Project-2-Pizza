@@ -65,48 +65,15 @@
 }
 
 <script>
-    @*$('#create').click(function (e) {
-        console.log("yes");
-        console.log(@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id);
-        var url = "http://localhost:56782/api/Customers/";
-        @*var dataObject = JSON.stringify({
-            "UserId" : @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id,
-            "PhoneNo": $('#PhoneNo').val(),
-            "Address": $('#Address').val()
-        });*@
-
-        @*var customer = '{UserId: "' + @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id +'", PhoneNo: "' + $("#PhoneNo").val() + '", Address: "' + $("#Address").val() + '" }';
-        var person = { 'UserId': @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id };
-        console.log(customer);
-        $.ajax({
-            url: url,
-            dataType: "jsonp",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            data: customer,
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (dataObject) {
-                alert('Success!');
-                return dataObject;
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
-    });*@
 
     $("#create").click(function (e) {
         var url = "http://localhost:56782/api/Customers";
         //var userid=@UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id;
         $.ajax({
             contentType: "application/json",
+            dataType:"json",
             type: "POST",
             url: url,
-            xhrFields: {
-                withCredentials: true
-            },
             data: JSON.stringify({
                 //UserId : userid,
                 Address: $("#Address").val(),

@@ -87,7 +87,7 @@ namespace PizzaAPI.Controllers
         {
             //payment.Customer = SearchCustomer(id);
             // payment.CustomerId = customer.CustomerId;
-            payment.CustomerId = SearchCustomer(id).CustomerId;
+            payment.CustomerId = id;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
