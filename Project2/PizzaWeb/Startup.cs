@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using PizzaAPI.Model;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using PizzaWeb.catalog;
 
 namespace PizzaWeb
 {
@@ -28,6 +29,7 @@ namespace PizzaWeb
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -40,10 +42,12 @@ namespace PizzaWeb
             services.AddDbContext<IdentityAppContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<CatalogContext>(options =>
+                options.UseInMemoryDatabase());
 
 
-           // services.AddDbContext<PizzaDbContext>(options =>
-               // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // services.AddDbContext<PizzaDbContext>(options =>
+            // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<IdentityAppContext>();
