@@ -4,7 +4,6 @@
     ViewData["Title"] = "Create";
 }
 
-<<<<<<< HEAD
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
@@ -24,7 +23,6 @@
 
 
 
-=======
    
 <head>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
@@ -43,7 +41,6 @@
 
 
  
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
 <body>
     <div class="box">
         <h2>Create Pizza</h2>
@@ -51,17 +48,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="textbox">
-<<<<<<< HEAD
-                <input asp-for="PizzaName" placeholder="Pizza Name" />
-=======
-                <input asp-for="PizzaName"  placeholder="Pizza Name"/>
-<<<<<<< HEAD
+
+                <input asp-for="PizzaName" value=@PizzaName.customPizza placeholder="Custom Pizza" />
+
                 <span asp-validation-for="PizzaName" class="text-danger" ></span>
             </div>
 
             <div class="textbox">
                 <label asp-for="Size" class="control-label"></label>
-<<<<<<< HEAD
+
                 
                 <select asp-for="Size">
 
@@ -73,27 +68,12 @@
 
                 </select>
 
-=======
-                <select asp-for="Size" ></select>
-=======
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
-                <span asp-validation-for="PizzaName" class="text-danger"></span>
-            </div>
-            <div class="textbox">
-                <label asp-for="Size" class="control-label"></label>
-<<<<<<< HEAD
-                <select asp-for="Size"></select>
-=======
-                <select asp-for="Size"  ></select>
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
->>>>>>> dc0e459bea702774c40626dfd7534a13103421f6
->>>>>>> feature
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
 
             <div class="textbox">
                 <label asp-for="Crust" class="control-label"></label>
-<<<<<<< HEAD
+
                 <select asp-for="Crust">
 
                     <option value="@Crust.cheeseCrust">Cheese Crust</option>
@@ -106,19 +86,13 @@
                     <option value="@Crust.softNpuffyCrust">softNpuffy Crust</option>
 
                 </select>
-=======
-<<<<<<< HEAD
-                <select asp-for="Crust"></select>
-=======
-                <select asp-for="Crust" ></select>
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
->>>>>>> feature
+
                 <span asp-validation-for="Crust" class="text-danger"></span>
             </div>
 
             <div class="textbox">
                 <label asp-for="Sauce" class="control-label"></label>
-<<<<<<< HEAD
+
                 <select asp-for="Sauce">
 
                     <option value="@Sauce.garlicSauce"> Garlic Sauce</option>
@@ -133,13 +107,7 @@
                     <option value="@Sauce.wasabiSauce"> Wasabi Sauce</option>
 
                 </select>
-=======
-<<<<<<< HEAD
-                <select asp-for="Sauce"></select>
-=======
-                <select asp-for="Sauce" ></select>
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
->>>>>>> feature
+
                 <span asp-validation-for="Sauce" class="text-danger"></span>
             </div>
 
@@ -161,14 +129,16 @@
                     <option value="@Topping.RedPepper"> Red Pepper</option>
                     <option value="@Topping.Artichokes"> Artichokes</option>
                     <option value="@Topping.Basil"> Basil</option>
+                    <option value="@Topping.Null"> N/A</option>
 
                 </select>
+
                 <span asp-validation-for="Topping1" class="text-danger"></span>
             </div>
 
             <div class="textbox">
                 <label asp-for="Topping2" class="control-label"></label>
-<<<<<<< HEAD
+
                 <select asp-for="Topping2">
 
                     <option value="@Topping.beef"> Beef</option>
@@ -185,15 +155,10 @@
                     <option value="@Topping.RedPepper"> Red Pepper</option>
                     <option value="@Topping.Artichokes"> Artichokes</option>
                     <option value="@Topping.Basil"> Basil</option>
+                    <option value="@Topping.Null"> N/A</option>
 
                 </select>
-=======
-<<<<<<< HEAD
-                <input asp-for="Topping2" />
-=======
-                <input asp-for="Topping2"  />
->>>>>>> 5e05c798ce8ccc7789b3e949767f8ef132b1e97d
->>>>>>> feature
+
                 <span asp-validation-for="Topping2" class="text-danger"></span>
             </div>
 
@@ -215,8 +180,10 @@
                     <option value="@Topping.RedPepper"> Red Pepper</option>
                     <option value="@Topping.Artichokes"> Artichokes</option>
                     <option value="@Topping.Basil"> Basil</option>
+                    <option value="@Topping.Null"> N/A</option>
 
                 </select>
+
                 <span asp-validation-for="Topping3" class="text-danger"></span>
             </div>
 

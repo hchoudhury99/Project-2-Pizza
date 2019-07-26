@@ -17,7 +17,7 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class PaymentsController : Controller
     {
-        private static string _url = "http://localhost:56782/api/";
+        private static string _url = "http://localhost:63461/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {

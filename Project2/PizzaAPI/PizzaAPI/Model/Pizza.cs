@@ -13,12 +13,14 @@ namespace PizzaAPI.Model
     public enum Topping
     {
         chicken, beef, pork, spinach, onion, greenpeppers, Mushrooms,
-        Tomatoes, Olives, Pepperoni, Sausage, RedPepper, Artichokes, Basil
+        Tomatoes, Olives, Pepperoni, Sausage, RedPepper, Artichokes, Basil,
+        Null
     }
     public enum PizzaName
     {
         chickenPizza, veggiePizza, pepperoniPizza, cheesePizza, beefPizza,
-        sausagePizza, greekPizza, chicagoPizza, sicilianPizza, neapolitanPizza
+        sausagePizza, greekPizza, chicagoPizza, sicilianPizza, neapolitanPizza,
+        customPizza
     }
     public enum Sauce
     {
