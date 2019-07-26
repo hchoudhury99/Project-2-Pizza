@@ -12658,23 +12658,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamma\\.nuget\\packages\\": {},
+    "C:\\Users\\Joe\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Joe\\Desktop\\NewPizza\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
       "projectName": "PizzaAPI",
-      "projectPath": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
-      "packagesPath": "C:\\Users\\hamma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
+      "projectPath": "C:\\Users\\Joe\\Desktop\\NewPizza\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+      "packagesPath": "C:\\Users\\Joe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Joe\\Desktop\\NewPizza\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\hamma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Joe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
