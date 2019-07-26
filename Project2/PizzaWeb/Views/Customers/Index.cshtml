@@ -1,0 +1,110 @@
+﻿@model IEnumerable<PizzaAPI.Model.Customer>
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Table.css" />
+    <style>
+
+            body {
+                font-family: 'Comfortaa', cursive;
+            }
+    </style>
+</head>
+
+
+<body>
+
+    <h1>Customer Info</h1>
+    <br />
+
+    <a asp-action="Create" class="btn">Create New</a>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <label>First name</label><br />
+                </th>
+                <th>
+                    <label>Last name</label><br />
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                @if (UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Id == item.UserId)
+                {
+                    <tr>
+                        <td>
+                            @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Firstname
+                        </td>
+                        <td>
+                            @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+</body>
+
+@*<script>
+        function Delete(event) {
+
+            event.preventDefault();
+            var id = parseInt(event.target.id);
+                var url = "http://localhost:56782/api/customers/" + id;
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    type: "DELETE",
+                    contentType: 'application/json; charset=utf-8',
+                    //data: JSON.stringify({ id: 15 }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                        alert("yes");
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+
+        }
+    </script>*@

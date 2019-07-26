@@ -1,0 +1,75 @@
+﻿@model PizzaAPI.Model.Order
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/CreatePage.css" />
+    <style>
+        body {
+            font-family: 'Comfortaa', cursive;
+        }
+    </style>
+</head>
+
+
+
+
+
+<body>
+    <div class="box">
+        <h2>Create Order</h2>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="textbox">              
+                <input asp-for="TotalPrice" class="form-control" placeholder="Total Price" />
+
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn" />
+            </div>
+        </form>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+
+
+    
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+        $('#btn btn-default').on('click', function (e) {
+            console.log("yes");
+            var url = "http://localhost:56782/api/orders/";
+            var dataObject = JSON.stringify({
+                'TotalPrice': $('#TotalPrice').val(),
+            });
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: dataObject,
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (dataObject) {
+                    alert('Success!');
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        });
+  
+</script>
