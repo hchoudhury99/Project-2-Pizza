@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace PizzaAPI.Model
 {
-    public interface ICustomer
+    public class OrderPaymentVM
     {
-        void AddCustomer(string JsonString);
-        List<String> ReturnAllCustomer();
+        public Order order { get; set; }
+        public Payment payment { get; set; }
 
     }
 }

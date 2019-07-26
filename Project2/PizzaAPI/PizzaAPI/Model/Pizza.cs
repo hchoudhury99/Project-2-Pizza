@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,23 +9,29 @@ namespace PizzaAPI.Model
 {
     public enum Size
     {
-        Small, Medium, Large
+        ExtraSmall, Small, Medium, Large, ExtraLarge 
     }
     public enum Topping
     {
-        chicken, beef, pork, spinach, onion, greenpeppers
+        chicken, beef, pork, spinach, onion, greenpeppers, Mushrooms,
+        Tomatoes, Olives, Pepperoni, Sausage, RedPepper, Artichokes, Basil,
+        Null
     }
     public enum PizzaName
     {
-        chickenPizza, veggePizza, pepperoniePizza, Custom
+        chickenPizza, veggiePizza, pepperoniPizza, cheesePizza, beefPizza,
+        sausagePizza, greekPizza, chicagoPizza, sicilianPizza, neapolitanPizza,
+        customPizza
     }
     public enum Sauce
     {
-        tomatoeSauce, garlicSauce
+        tomatoeSauce, garlicSauce, pestoSauce, BechamelSauce, SalsaSauce,
+        BBQSauce, hummusSauce, pumpkinSauce, ranchSauce, wasabiSauce
     }
     public enum Crust
     {
-        thickCrust, thinCrust, cheeseCrust
+        thickCrust, thinCrust, cheeseCrust, handtossedCrust, crunchyCrust,
+        brooklynstyleCrust, glutenfreeCrust, softNpuffyCrust
     }
     public partial class Pizza
     {

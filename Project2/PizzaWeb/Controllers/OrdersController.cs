@@ -14,10 +14,11 @@ using System.Threading;
 using System.Net;
 using PizzaWeb.catalog;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PizzaWeb.Controllers
 {
-
+    [Authorize]
     public class OrdersController : Controller
     {
 
@@ -69,13 +70,10 @@ namespace PizzaWeb.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
                 //int userid = Convert.ToInt32(User.Claims.First().Value);
-                Customer c = SearchCustomerId(User.Claims.First().Value);
+                //Customer c = SearchCustomerId(User.Claims.First().Value);
                 //Orders = Orders.Where(x => x.Customer.CustomerId == c.CustomerId);
                 //ViewBag.CustomerID = c.CustomerId;
-                if (Orders == null)
-                {
-                    Orders = Enumerable.Empty<Order>();
-                }
+ 
                 return View(Orders);
             }
         }
@@ -108,6 +106,7 @@ namespace PizzaWeb.Controllers
             o.Customer = SearchCustomerId(o.CustomerId.ToString());
             //o.OrderDate = DateTime.Now;
             List<Pizza> submitOrderPizza = new List<Pizza>();
+            
             foreach (var item in _context.TempPizzas)
             {
                 //customer id is orderid in Webapi temp database
@@ -116,6 +115,7 @@ namespace PizzaWeb.Controllers
                     submitOrderPizza.Add(item);
                     //remove the item from in memory storage
                     _context.TempPizzas.Remove(item);
+                    _context.SaveChanges();
                 }
             }
             o.Pizza = submitOrderPizza;
@@ -125,6 +125,9 @@ namespace PizzaWeb.Controllers
 
             return RedirectToAction("Create", o);
         }
+
+
+
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -145,21 +148,28 @@ namespace PizzaWeb.Controllers
                  {
                      DateFormatHandling = DateFormatHandling.IsoDateFormat
                  });
-                //int id = Convert.ToInt32(User.Claims.First().Value);
+                int id = Convert.ToInt32(User.Claims.First().Value);
                 client.BaseAddress = new Uri(_url);
-       
-                Customer c = SearchCustomerId(User.Claims.First().Value);
-                order.CustomerId = c.CustomerId;
 
-                var postTask = client.PostAsJsonAsync("Orders", order);
-
-                postTask.Wait();
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                Customer cust = SearchCustomerId(User.Claims.First().Value);
+                if (cust == null)
                 {
-                    return RedirectToAction("Index");
+
+                    ModelState.AddModelError(string.Empty, "Customer not found! Please create a customer before ordering.");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                else
+                {
+                    order.CustomerId = cust.CustomerId;
+                    var postTask = client.PostAsJsonAsync("Orders/" + id, order);
+
+                    postTask.Wait();
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                }
                 ////
             }
 
@@ -229,7 +239,7 @@ namespace PizzaWeb.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             using (var client = new HttpClient())
             {

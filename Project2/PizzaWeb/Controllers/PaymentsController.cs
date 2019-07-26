@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,40 +14,21 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private static string _url = "http://localhost:56782/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Payment> payments = null;
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(_url);
-                //HTTP GET
-                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
-                var responseTask = client.GetAsync("Payments");
-                responseTask.Wait();
+            Customer cust = SearchCustomerId(User.Claims.First().Value);
+            IEnumerable<Payment> payments = GetAllPayment();
+            //payments = payments.Where(x => x.CustomerId == cust.CustomerId);
+            //if (payments == null)
+            //{
+            //    payments = Enumerable.Empty<Payment>();
+            //}
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<IList<Payment>>();
-                    readTask.Wait();
-
-                    payments = readTask.Result;
-                }
-                else //web api sent error response 
-                {
-                    //log response status here..
-
-                    payments = Enumerable.Empty<Payment>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                }
-            }
-            Customer c = SearchCustomerId(User.Claims.First().Value);
-            payments = payments.Where(x => x.CustomerId == c.CustomerId);
             return View(payments);
         }
 
@@ -62,34 +44,30 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Payments/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
+            OrderPaymentVM orderPayment = new OrderPaymentVM();
+            if(id != null)
+            {
+                orderPayment.order = SearchOrder(id);
+            }
+            
             //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id");
-            return View();
+            return View(orderPayment);
         }
 
-        // GET: Payments/Create
-        public IActionResult CreatePayment()
-        {
-            //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id");
-            return View();
-        }
+
 
         // POST: Payments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentId,CardNo,CustomerId")] Payment payment)
+        public async Task<IActionResult> Create([Bind("payment, order")]  OrderPaymentVM orderPayment)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_url);
-                //JsonConvert.SerializeObject(payment, Formatting.Indented,
-                //     new JsonSerializerSettings
-                //     {
-                //         DateFormatHandling = DateFormatHandling.IsoDateFormat
-                //     });
                 //HTTP GET
                 // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
                 int id = Convert.ToInt32(User.Claims.First().Value);
@@ -98,23 +76,34 @@ namespace PizzaWeb.Controllers
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                //var data = JsonConvert.SerializeObject(payment);
-                //var jsonData = new StringContent(data, Encoding.UTF8, "application/json");
-                Customer c = SearchCustomerId(User.Claims.First().Value);
-                payment.CustomerId = c.CustomerId;
+               
 
-                var postTask = client.PostAsJsonAsync("Payments/" +id, payment);
-                postTask.Wait();
+                Customer cust = SearchCustomerId(User.Claims.First().Value);
+                //Payment payments = GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId);
+                Order order= SearchAllOrder().FirstOrDefault(x => x.Customer.CustomerId == cust.CustomerId);
+                orderPayment.order = order;
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                if (cust == null || GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId) != null)
                 {
-                    return RedirectToAction("Index");
+
+                    ModelState.AddModelError(string.Empty, "Customer or payment information no exist! Please use the create one or update it.");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                else
+                {
+                    Payment payment = orderPayment.payment;
+                    var postTask = client.PostAsJsonAsync("Payments/" + cust.CustomerId, payment);
+                    postTask.Wait();
+
+                    var result = postTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                }
             }
             //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id", payment.CustomerID);
-            return View(payment);
+            return View(orderPayment);
         }
 
         // GET: Payments/Edit/5
@@ -264,6 +253,106 @@ namespace PizzaWeb.Controllers
             }
 
             return customers;
+        }
+
+
+        private IEnumerable<Payment> GetAllPayment()
+        {
+            IEnumerable<Payment> payments = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+                //HTTP GET
+                // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
+                var responseTask = client.GetAsync("Payments");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Payment>>();
+                    readTask.Wait();
+
+                    payments = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    payments = Enumerable.Empty<Payment>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return payments;
+        }
+
+
+        private Order SearchOrder(int? id)
+        {
+            Order order = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+
+                var responseTask = client.GetAsync("Orders/" + id);
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Order>();
+                    readTask.Wait();
+                    order = readTask.Result;
+                    //customers = readTask.Result.Where(s => s.id == id).FirstOrDefault<Customer>();
+                }
+                else //web api sent error response 
+                {
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return (order);
+        }
+
+        private IEnumerable<Order> SearchAllOrder()
+        {
+            IEnumerable<Order> Orders = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_url);
+                //int CurrentUserId = Convert.ToInt32(User.Claims.First().Value);
+
+                // Customer c = Customer.FirstOrDefault(x => x.UserId == CurrentUserId);
+                //HTTP GET
+                //Request.ContentType = User.Claims.First().Value;
+
+                var responseTask = client.GetAsync("Orders");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Order>>();
+                    readTask.Wait();
+
+
+                    Orders = readTask.Result;
+                    JsonConvert.SerializeObject(Orders, Formatting.Indented,
+                                 new JsonSerializerSettings
+                                 {
+                                     DateFormatHandling = DateFormatHandling.IsoDateFormat
+                                 });
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    Orders = Enumerable.Empty<Order>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+                return (Orders);
+            }
         }
     }
 }

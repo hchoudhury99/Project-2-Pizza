@@ -6,30 +6,70 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
 
-<h4>Order</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/CreatePage.css" />
+    <style>
+        body {
+            font-family: 'Comfortaa', cursive;
+        }
+    </style>
+</head>
+
+
+
+
+
+<body>
+    <div class="box">
+        <h2>Create Order</h2>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TotalPrice" class="control-label"></label>
-                <input asp-for="TotalPrice" class="form-control" />
+
+            <div class="textbox">              
+                <input asp-for="TotalPrice" class="form-control" placeholder="Total Price" />
+
                 <span asp-validation-for="TotalPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn" />
             </div>
         </form>
+        <a asp-action="Index">Back to List</a>
     </div>
-</div>
+</body>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+        $('#btn btn-default').on('click', function (e) {
+            console.log("yes");
+            var url = "http://localhost:56782/api/orders/";
+            var dataObject = JSON.stringify({
+                'TotalPrice': $('#TotalPrice').val(),
+            });
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                data: dataObject,
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (dataObject) {
+                    alert('Success!');
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        });
+  
+</script>

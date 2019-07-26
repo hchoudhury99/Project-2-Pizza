@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,12 @@ using PizzaAPI.Model;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
     public class PizzasController : Controller
     {
         private static string _url = "http://localhost:56782/api/";
         // GET: Pizzas
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             IEnumerable<Pizza> pizza = null;
             using (var client = new HttpClient())
@@ -47,7 +49,7 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Pizzas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -70,7 +72,7 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PizzaId,PizzzaName,Price,size,crust,topping")] Pizza pizza)
+        public IActionResult Create([Bind("PizzaId,PizzzaName,Price,size,crust,topping")] Pizza pizza)
         {
             using (var client = new HttpClient())
             {

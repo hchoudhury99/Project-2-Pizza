@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {}
   },
   "projects": {
@@ -12,12 +13,25 @@
         "projectPath": "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
         "packagesPath": "C:\\Users\\Ranjodh\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Ranjodh\\Desktop\\7-22-2019\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
+=======
+    "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+        "projectName": "PizzaAPI",
+        "projectPath": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\PizzaAPI.csproj",
+        "packagesPath": "C:\\Users\\hamma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hamma\\Desktop\\Project-2\\Project-2-Pizza\\Project2\\PizzaAPI\\PizzaAPI\\obj\\",
+>>>>>>> c41da30f170a83b9901f4282d8ba05eadf2caa7e
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ranjodh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hamma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,6 +74,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[2.1.9, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[4.3.1, )"
             }
           },
           "imports": [

@@ -62,7 +62,8 @@ namespace PizzaWeb.Controllers
                 p.OrderId = Convert.ToInt32(userId);
                 _context.TempPizzas.Add(p);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Pizzas");
             }
             catch
             {
