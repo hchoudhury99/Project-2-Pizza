@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaAPI.Model;
 using PizzaWeb.catalog;
@@ -9,6 +10,8 @@ using System.Security.Claims;
 
 namespace PizzaWeb.Controllers
 {
+    [Authorize]
+
     public class ShoppingcartController : Controller
     {
         private CatalogContext _context;

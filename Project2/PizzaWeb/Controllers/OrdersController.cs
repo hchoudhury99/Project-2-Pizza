@@ -21,8 +21,6 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class OrdersController : Controller
     {
-<<<<<<< HEAD
-=======
 
         private readonly CatalogContext _context;
 
@@ -30,7 +28,7 @@ namespace PizzaWeb.Controllers
         {
             _context = context;
         }
->>>>>>> 09a0e5319daf5d8179873a3dfd661aeb3d767345
+
         private static string _url = "http://localhost:56782/api/";
         // GET: Orders
         public IActionResult Index()
