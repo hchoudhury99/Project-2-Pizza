@@ -73,7 +73,8 @@ namespace PizzaWeb.Controllers
                 //Customer c = SearchCustomerId(User.Claims.First().Value);
                 //Orders = Orders.Where(x => x.Customer.CustomerId == c.CustomerId);
                 //ViewBag.CustomerID = c.CustomerId;
- 
+                var userId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                Orders = Orders.Where(u => u.Customer.UserId == userId);
                 return View(Orders);
             }
         }
