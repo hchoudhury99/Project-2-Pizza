@@ -1,7 +1,6 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
+    "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:56782/",
@@ -20,12 +19,10 @@
     "PizzaAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
-      "applicationUrl": "http://localhost:56782/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-      
+      },
+      "applicationUrl": "http://localhost:56782/"
     }
   }
 }

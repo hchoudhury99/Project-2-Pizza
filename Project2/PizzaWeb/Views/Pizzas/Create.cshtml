@@ -34,7 +34,7 @@
             position: fixed;
             top: 15%;
             left: 20%;
-        }
+        } 
     </style>
 </head>
 
@@ -45,14 +45,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="textbox">
-
-
+ 
                 <input asp-for="PizzaName" value=@PizzaName.customPizza placeholder="Custom Pizza" />
 
+                <span asp-validation-for="PizzaName" class="text-danger" ></span>
 
-                <input asp-for="PizzaName" placeholder="Pizza Name" />
-
-                <span asp-validation-for="PizzaName" class="text-danger"></span>
             </div>
 
             <div class="textbox">
@@ -68,14 +65,8 @@
 
                 </select>
 
-                <select asp-for="Size"></select>
-            </div>
-            <div class="textbox">
-                <label asp-for="Size" class="control-label"></label>
-                <select asp-for="Size"></select>
-
-
                 <span asp-validation-for="Size" class="text-danger"></span>
+
             </div>
 
             <div class="textbox">
@@ -94,9 +85,6 @@
                     <option value="@Crust.softNpuffyCrust">softNpuffy Crust</option>
 
                 </select>
-
-
-                <select asp-for="Crust"></select>
 
                 <span asp-validation-for="Crust" class="text-danger"></span>
             </div>
@@ -119,8 +107,6 @@
                     <option value="@Sauce.wasabiSauce"> Wasabi Sauce</option>
 
                 </select>
-
-                <select asp-for="Sauce"></select>
 
 
                 <span asp-validation-for="Sauce" class="text-danger"></span>
@@ -153,7 +139,7 @@
 
             <div class="textbox">
                 <label asp-for="Topping2" class="control-label"></label>
-
+                
                 <select asp-for="Topping2">
 
                     <option value="@Topping.beef"> Beef</option>
@@ -173,8 +159,6 @@
                     <option value="@Topping.Null"> N/A</option>
 
                 </select>
-
-                <input asp-for="Topping2" />
 
                 <span asp-validation-for="Topping2" class="text-danger"></span>
             </div>
