@@ -71,7 +71,6 @@ namespace PizzaAPI.Controllers
 
         // PUT: api/Customers/5
         [HttpPut("{id}")]
-        [EnableCors]
         public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
@@ -132,7 +131,6 @@ namespace PizzaAPI.Controllers
 
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
-        [EnableCors]
         public async Task<IActionResult> DeleteCustomer([FromRoute] int id)
         {
             if (!ModelState.IsValid)

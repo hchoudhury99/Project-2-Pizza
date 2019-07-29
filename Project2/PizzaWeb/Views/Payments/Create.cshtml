@@ -172,8 +172,8 @@
         <div class="container">
             @{ int quantity = 0; if (this.Model.order.Pizza != null || this.Model.order.Pizza.Count() != 0) { quantity = this.Model.order.Pizza.Count(); } }
             <div class="form-group">
-                <label asp-for="order.OrderId" class="control-label">Credit card number</label>
-                <input asp-for="order.OrderId" class="form-control" value="@Model.order.OrderId" />
+                <label asp-for="order.OrderId" class="control-label">Order#: </label>
+                <input asp-for="order.OrderId" class="form-control" value="@Model.order.OrderId" readonly/>
                 <span asp-validation-for="order.OrderId" class="text-danger"></span>
             </div>
             <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>@quantity</b></span></h4>

@@ -1,0 +1,18 @@
+﻿
+@keyframes trans{
+    0% { transform: scale(1); }
+    50% { transform: scale(5); }
+    100% { transform: scale(1); }
+}
+
+
+.banner{
+    font-size: 30px;
+    text-decoration: none;
+    opacity: 0.8;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    color: hotpink;
+    animation: trans 5s infinite;
+}

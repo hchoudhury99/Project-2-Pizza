@@ -1,0 +1,20 @@
+﻿@model PizzaAPI.Model.Order
+@using Microsoft.AspNetCore.Identity
+@using PizzaWeb.Data;
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Confirmation";
+}
+<center><h2>Confirmation</h2></center>
+
+<div>
+
+    <hr />
+    <h3>Thank you!  @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Firstname  @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Lastname.</h3>
+    <p>Your Order number is: @Model.OrderId. It will be ready on @Model.Duetime!</p>
+    <p>The confirmation already sent it to your email: @UserManager.Users.FirstOrDefault(m => m.UserName == @UserManager.GetUserName(User)).Email</p>
+</div>
+<div>
+
+    <a asp-controller="Home" asp-action="Index">Back to home page!</a>
+</div>

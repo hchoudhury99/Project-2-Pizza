@@ -17,7 +17,8 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class PaymentsController : Controller
     {
-        private static string _url = "http://localhost:63461/api/";
+        //private static string _url = "http://localhost:63461/api/";
+        private static string _url = "http://localhost:56782/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {
@@ -41,6 +42,19 @@ namespace PizzaWeb.Controllers
             }
             var payment = SearchPayments(id);
             return View(payment);
+        }
+
+        // GET: Payments/Details/5
+        public IActionResult Confirmation(int? id)
+        {
+            Order order = null;
+            if (id != null)
+            {
+                order = SearchOrder(id);
+            }
+
+            //ViewData["CustomerID"] = new SelectList(_context.Customers, "id", "id");
+            return View(order);
         }
 
         // GET: Payments/Create
@@ -74,9 +88,7 @@ namespace PizzaWeb.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-               
+ 
 
                 Customer cust = SearchCustomerId(User.Claims.First().Value);
                 //Payment payments = GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId);
@@ -97,7 +109,7 @@ namespace PizzaWeb.Controllers
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Confirmation", new { id = order.OrderId, });
                     }
                     ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
                 }
@@ -124,7 +136,7 @@ namespace PizzaWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CardNumber,ExpireDate,CVV,CustomerID")] Payment payment)
+        public async Task<IActionResult> Edit(int id, [Bind("PaymentId,CardNo,CustomerId")] Payment payment)
         {
             if (id != payment.PaymentId)
             {
@@ -141,10 +153,12 @@ namespace PizzaWeb.Controllers
                 var responseTask = client.PutAsJsonAsync("Payments/" + id, payment);
                 responseTask.Wait();
                 var res = responseTask.Result;
+                Customer cust = SearchCustomerId(User.Claims.First().Value);
+                Order order = SearchAllOrder().FirstOrDefault(x => x.Customer.CustomerId == cust.CustomerId);
                 //customers = JsonConvert.DeserializeObject<List<Customer>>(res).Where(s => s.id == id).FirstOrDefault<Customer>();
                 if (res.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Confirmation", new { id = order.OrderId, });
                 }
             }
 
