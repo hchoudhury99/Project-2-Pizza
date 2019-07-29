@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
 ﻿using System;
 using System.Collections.Generic;
@@ -96,7 +96,7 @@ namespace PizzaAPI
     }
 }
 
-=======
+=======*/
 
 ﻿using System;
 using System.Collections.Generic;
@@ -194,4 +194,4 @@ namespace PizzaAPI
     }
 }
 
->>>>>>> 17e8806c1a984a942444c32a9e3d547bee4cadf9
+//>>>>>>> 17e8806c1a984a942444c32a9e3d547bee4cadf9

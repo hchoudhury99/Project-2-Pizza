@@ -52,4 +52,3 @@ C:\Users\Ranjodh\Desktop\7-22-2019\Project-2-Pizza\Project2\PizzaAPI\PizzaAPI\ob
 C:\Users\Ranjodh\Desktop\7-22-2019\Project-2-Pizza\Project2\PizzaAPI\PizzaAPI\obj\Debug\netcoreapp2.1\PizzaAPI.RazorTargetAssemblyInfo.cache
 C:\Users\Ranjodh\Desktop\7-22-2019\Project-2-Pizza\Project2\PizzaAPI\PizzaAPI\obj\Debug\netcoreapp2.1\PizzaAPI.dll
 C:\Users\Ranjodh\Desktop\7-22-2019\Project-2-Pizza\Project2\PizzaAPI\PizzaAPI\obj\Debug\netcoreapp2.1\PizzaAPI.pdb
-C:\Users\Ranjodh\Desktop\7-22-2019\Project-2-Pizza\Project2\PizzaAPI\PizzaAPI\obj\Debug\netcoreapp2.1\PizzaAPI.csprojAssemblyReference.cache
