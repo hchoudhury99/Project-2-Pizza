@@ -1,0 +1,917 @@
+﻿@model PizzaAPI.Model.Pizza
+@{
+    ViewData["Title"] = "TopChoice";
+}
+
+
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <style>
+        .card {
+            border: 1px solid black;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            color: darkorange;
+        }
+
+        .btn-primary {
+            color: white;
+            background-color: cadetblue;
+            border-radius: 8px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-decoration: none;
+        }
+
+            .btn-primary:hover {
+                text-decoration: none;
+            }
+
+        body {
+            background-image: url(/images/gkgd.jpg);
+            background-size: cover;
+            text-align: center;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        .outer {
+        }
+
+
+        .btn-back {
+            border: none;
+            padding: 10px;
+            width: 130%;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #ffffff;
+            opacity: 0.8;
+            background-size: 180%;
+            transition: 0.6s;
+            background-image: linear-gradient(to left, #ffc312, #ee5a24, #ffc312, cadetblue);
+        }
+
+            .btn-back:hover {
+                text-decoration: none;
+                background-position: right;
+                color: black;
+            }
+
+        .card-img-top {
+            width: 150px;
+            height: 150px;
+        }
+
+        .card-text {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .card-text-div {
+            width: 150px;
+            height: 125px;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+        <div class="outer">
+            <h1 style="color: black;">Top Choice</h1>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Cheese Pie</h5>
+                    <img class="card-img-top" src="https://eatcaulipower.com/sites/default/files/product-images/Pizza-ThreeCheese_1.png" alt="Cheese Pizza Image">
+                    <div class="card-text-div">
+                        <p class="card-text">Carefully Baked Original Cheese Pizza, With Creamy Tomato Sauce!</p>
+                    </div>
+
+                    <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="textbox">
+
+                            <input asp-for="PizzaName" value=@PizzaName.cheesePizza placeholder="Cheese Pizza" readonly />
+                            
+                            <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Crust" value=@Crust.cheeseCrust placeholder="Cheese Crust" readonly />
+
+                            <span asp-validation-for="Crust" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" readonly />
+
+                            <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Topping1" value=@Topping.None placeholder="N/A" readonly />
+
+                            <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly />
+
+                            <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly />
+
+                            <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <label asp-for="Size" class="control-label"></label>
+
+                            <select asp-for="Size">
+                                <option value="@Size.ExtraSmall">Extra Small </option>
+                                <option value="@Size.Small">Small </option>
+                                <option value="@Size.Medium">Medium </option>
+                                <option value="@Size.Large">Large </option>
+                                <option value="@Size.ExtraLarge">Extra Large </option>
+                            </select>
+
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Vegetable Pie</h5>
+                    <img class="card-img-top" src="https://eatcaulipower.ca/sites/default/files/product-images/Pizza-Veggie_6.png" alt="Cheese Pizza Image">
+                    <div class="card-text-div">
+                        <p class="card-text">Delicious Veggie Pizza With Mushrooms, Tomatoes, and Olives! </p>
+                    </div>
+
+                    <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="textbox">
+
+                            <input asp-for="PizzaName" value=@PizzaName.veggiePizza placeholder="Veggie Pizza" readonly/>
+
+                            <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Crust" value=@Crust.glutenfreeCrust placeholder=" Gluten Free Crust" readonly/>
+
+                            <span asp-validation-for="Crust" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Sauce" value=@Sauce.hummusSauce placeholder="Hummus Sauce" readonly/>
+
+                            <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Topping1" value=@Topping.Mushrooms placeholder="Mushrooms" readonly/>
+
+                            <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" readonly/>
+
+                            <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Topping3" value=@Topping.Olives placeholder="Olives" readonly/>
+
+                            <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <label asp-for="Size" class="control-label"></label>
+
+                            <select asp-for="Size">
+                                <option value="@Size.ExtraSmall">Extra Small </option>
+                                <option value="@Size.Small">Small </option>
+                                <option value="@Size.Medium">Medium </option>
+                                <option value="@Size.Large">Large </option>
+                                <option value="@Size.ExtraLarge">Extra Large </option>
+                            </select>
+
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Chicken Pie</h5>
+                    <img class="card-img-top" src="https://www.pcpizza.com/wp-content/uploads/2015/05/BBQChicken.png" alt="Cheese Pizza Image">
+                    <div class="card-text-div">
+                        <p class="card-text">Delicious Pizza With Chicken Topping! </p>
+                    </div>
+
+                    <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="textbox">
+
+                            <input asp-for="PizzaName" value=@PizzaName.chickenPizza placeholder="Chicken Pizza" readonly/>
+
+                            <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Crust" value=@Crust.handtossedCrust placeholder=" Hand Tossed Crust" readonly/>
+
+                            <span asp-validation-for="Crust" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Sauce" value=@Sauce.SalsaSauce placeholder="Salsa Sauce" readonly/>
+
+                            <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping1" value=@Topping.chicken placeholder="Chicken" readonly/>
+
+                            <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+
+                            <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
+                            <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <label asp-for="Size" class="control-label"></label>
+
+                            <select asp-for="Size">
+                                <option value="@Size.ExtraSmall">Extra Small </option>
+                                <option value="@Size.Small">Small </option>
+                                <option value="@Size.Medium">Medium </option>
+                                <option value="@Size.Large">Large </option>
+                                <option value="@Size.ExtraLarge">Extra Large </option>
+                            </select>
+
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Beef Pie</h5>
+                    <img class="card-img-top" src="https://www.sccpre.cat/mypng/detail/18-182396_roasted-beef-tenderloin-crispy-bacon-mushrooms-onions-pizza.png" alt="Cheese Pizza Image">
+                    <div class="card-text-div">
+                        <p class="card-text">Delicious Pizza With Thin Cut Seasoned Beef Topping! </p>
+                    </div>
+
+                    <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="textbox">
+
+                            <input asp-for="PizzaName" value=@PizzaName.beefPizza placeholder="Beef Pizza" readonly/>
+
+                            <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Crust" value=@Crust.crunchyCrust placeholder=" Crunchy Crust" readonly/>
+
+                            <span asp-validation-for="Crust" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Sauce" value=@Sauce.BBQSauce placeholder="BBQ Sauce" readonly/>
+
+                            <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <input asp-for="Topping1" value=@Topping.beef placeholder="Beef" readonly/>
+
+                            <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+
+                            <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
+                            <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <label asp-for="Size" class="control-label"></label>
+
+                            <select asp-for="Size">
+                                <option value="@Size.ExtraSmall">Extra Small </option>
+                                <option value="@Size.Small">Small </option>
+                                <option value="@Size.Medium">Medium </option>
+                                <option value="@Size.Large">Large </option>
+                                <option value="@Size.ExtraLarge">Extra Large </option>
+                            </select>
+
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn-primary" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                <div class="card-body">
+                    <h5 class="card-title">Pepperoni Pie</h5>
+                    <img class="card-img-top" src="https://www.sccpre.cat/mypng/detail/18-182277_pepperoni-pizza-png.png" alt="Cheese Pizza Image">
+                    <div class="card-text-div">
+                        <p class="card-text">Delicious Pizza With Pepperoni Topping! </p>
+                    </div>
+
+                    <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="textbox">
+
+                            <input asp-for="PizzaName" value=@PizzaName.pepperoniPizza placeholder="Pepperoni Pizza" readonly/>
+
+                            <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Crust" value=@Crust.brooklynstyleCrust placeholder=" Brooklyn Style Crust" readonly/>
+
+                            <span asp-validation-for="Crust" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Sauce" value=@Sauce.BechamelSauce placeholder="Bechamel Sauce" readonly/>
+
+                            <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping1" value=@Topping.Pepperoni placeholder="Pepperoni" readonly/>
+
+                            <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+                            <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
+
+                            <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="textbox">
+                            <label asp-for="Size" class="control-label"></label>
+
+                            <select asp-for="Size">
+                                <option value="@Size.ExtraSmall">Extra Small </option>
+                                <option value="@Size.Small">Small </option>
+                                <option value="@Size.Medium">Medium </option>
+                                <option value="@Size.Large">Large </option>
+                                <option value="@Size.ExtraLarge">Extra Large </option>
+                            </select>
+
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn-primary" />
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="outer">
+
+                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sausage Pie</h5>
+                        <img class="card-img-top" src="https://www.pngkey.com/png/full/9-91204_sausage-pizza-california-style-pizza.png" alt="Cheese Pizza Image">
+                        <div class="card-text-div">
+                            <p class="card-text">Delicious Pizza With Sausage Topping! </p>
+                        </div>
+
+                        <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="textbox">
+
+                                <input asp-for="PizzaName" value=@PizzaName.sausagePizza placeholder="Sausage Pizza" readonly/>
+
+                                <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" readonly/>
+
+                                <span asp-validation-for="Crust" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Sauce" value=@Sauce.garlicSauce placeholder="Garlic Sauce" readonly/>
+
+                                <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" readonly/>
+
+                                <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+
+
+                                <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
+                                <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <label asp-for="Size" class="control-label"></label>
+
+                                <select asp-for="Size">
+                                    <option value="@Size.ExtraSmall">Extra Small </option>
+                                    <option value="@Size.Small">Small </option>
+                                    <option value="@Size.Medium">Medium </option>
+                                    <option value="@Size.Large">Large </option>
+                                    <option value="@Size.ExtraLarge">Extra Large </option>
+                                </select>
+
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn-primary" />
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Greek Pie</h5>
+                        <img class="card-img-top" src="http://www.queensboropizza.com/assets/images/products/3.png" alt="Cheese Pizza Image">
+                        <div class="card-text-div">
+                            <p class="card-text">Greek Style Pizza With Rosted Red Pepper, Artichokes, and Basil Toppings! </p>
+                        </div>
+
+                        <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="textbox">
+
+                                <input asp-for="PizzaName" value=@PizzaName.greekPizza placeholder="Greek Pizza" readonly/>
+
+                                <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <input asp-for="Crust" value=@Crust.softNpuffyCrust placeholder=" softNpuffy Crust" readonly/>
+
+                                <span asp-validation-for="Crust" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Sauce" value=@Sauce.pestoSauce placeholder="Pesto Sauce" readonly/>
+
+                                <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping1" value=@Topping.RedPepper placeholder="Red Pepper" readonly/>
+
+                                <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping2" value=@Topping.Artichokes placeholder="Artichokes" readonly/>
+
+                                <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
+
+                                <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <label asp-for="Size" class="control-label"></label>
+
+                                <select asp-for="Size">
+                                    <option value="@Size.ExtraSmall">Extra Small </option>
+                                    <option value="@Size.Small">Small </option>
+                                    <option value="@Size.Medium">Medium </option>
+                                    <option value="@Size.Large">Large </option>
+                                    <option value="@Size.ExtraLarge">Extra Large </option>
+                                </select>
+
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn-primary" />
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Chicago Pie</h5>
+                        <img class="card-img-top" src="https://i.ya-webdesign.com/images/chicago-pizza-png-1.png" alt="Cheese Pizza Image">
+                        <div class="card-text-div">
+                            <p class="card-text">Chicago Style Deep Dish Pizza! </p>
+                        </div>
+
+                        <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="textbox">
+
+
+                                <input asp-for="PizzaName" value=@PizzaName.chicagoPizza placeholder="Chicago Pizza" readonly/>
+
+                                <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Crust" value=@Crust.thickCrust placeholder=" Thick Crust" readonly/>
+
+                                <span asp-validation-for="Crust" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <input asp-for="Sauce" value=@Sauce.pumpkinSauce placeholder="Pumpkin Sauce" readonly/>
+                                <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping1" value=@Topping.None placeholder="N/A" readonly/>
+
+                                <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+
+                                <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
+                                <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <label asp-for="Size" class="control-label"></label>
+
+                                <select asp-for="Size">
+                                    <option value="@Size.ExtraSmall">Extra Small </option>
+                                    <option value="@Size.Small">Small </option>
+                                    <option value="@Size.Medium">Medium </option>
+                                    <option value="@Size.Large">Large </option>
+                                    <option value="@Size.ExtraLarge">Extra Large </option>
+                                </select>
+
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn-primary" />
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Neapolitan Pie</h5>
+                        <img class="card-img-top" src="https://mymidici.com/devsite/wp-content/uploads/2017/12/NP-Margherita.png" alt="Cheese Pizza Image">
+                        <div class="card-text-div">
+                            <p class="card-text">Original Naples Style Pizza With All Italian Ingredients! </p>
+                        </div>
+
+                        <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="textbox">
+
+                                <input asp-for="PizzaName" value=@PizzaName.neapolitanPizza placeholder="Neapolitan Pizza" readonly/>
+
+                                <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" readonly/>
+
+                                <span asp-validation-for="Crust" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" readonly/>
+
+                                <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping1" value=@Topping.spinach placeholder="Spinach" readonly/>
+
+
+                                <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+
+                                <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" readonly/>
+
+
+                                <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
+
+                                <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <label asp-for="Size" class="control-label"></label>
+
+                                <select asp-for="Size">
+                                    <option value="@Size.ExtraSmall">Extra Small </option>
+                                    <option value="@Size.Small">Small </option>
+                                    <option value="@Size.Medium">Medium </option>
+                                    <option value="@Size.Large">Large </option>
+                                    <option value="@Size.ExtraLarge">Extra Large </option>
+                                </select>
+
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn-primary" />
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem; display: inline-block; background-color: white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Sicilian Pie</h5>
+                        <img class="card-img-top" src="https://www.trzcacak.rs/myfile/detail/1-15500_pizza-slice-images-pizza-sicilian-pizza-italian-pizza.png" alt="Cheese Pizza Image">
+                        <div class="card-text-div">
+                            <p class="card-text">Original Thick Crust Sicilian Pizza! </p>
+                        </div>
+
+                        <form asp-controller="Shoppingcart" asp-action="Create" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="textbox">
+
+                               <input asp-for="PizzaName" value=@PizzaName.sicilianPizza placeholder="Sicilian Pizza" readonly/>
+
+
+                                <span asp-validation-for="PizzaName" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Crust" value=@Crust.thickCrust placeholder="Thick Crust" readonly/>
+
+                                <span asp-validation-for="Crust" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <input asp-for="Sauce" value=@Sauce.wasabiSauce placeholder="Wasabi Sauce" readonly/>
+
+                                <span asp-validation-for="Sauce" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" readonly/>
+
+
+                                <span asp-validation-for="Topping1" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping2" value=@Topping.Pepperoni placeholder="Pepperoni" readonly/>
+
+                                <span asp-validation-for="Topping2" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
+
+                                <span asp-validation-for="Topping3" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="textbox">
+                                <label asp-for="Size" class="control-label"></label>
+
+                                <select asp-for="Size">
+                                    <option value="@Size.ExtraSmall">Extra Small </option>
+                                    <option value="@Size.Small">Small </option>
+                                    <option value="@Size.Medium">Medium </option>
+                                    <option value="@Size.Large">Large </option>
+                                    <option value="@Size.ExtraLarge">Extra Large </option>
+                                </select>
+
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn-primary" />
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <a class="btn-back" asp-action="Index">Go Back</a>
+
+        </div>
+    </div>
+</body>
