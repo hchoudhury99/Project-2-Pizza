@@ -18,8 +18,6 @@ namespace PizzaWeb.Controllers
     {
         private static string _url = "http://localhost:56782/api/";
 
-
-
         // GET: Customers
         public ActionResult Index()
         {

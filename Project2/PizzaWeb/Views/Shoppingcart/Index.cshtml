@@ -3,69 +3,94 @@
     ViewData["Title"] = "ShoppingCart";
 }
 
-<h2>Shopping Cart</h2>
 
-<table class="table" style="width:80%" >
-    <thead align="center">
-        <tr>
-            <th>
-                @Html.Label("Pizza Type")
-            </th>
-            <th>
-                @Html.Label("Size")
-            </th>
-            <th>
-                @Html.Label("Crust")
-            </th>
-            <th>
-                @Html.Label("Sauce")
-            </th>
-            <th>
-                @Html.Label("1st Topping")
-            </th>
-            <th>
-                @Html.Label("2nd Topping2")
-            </th>
-            <th>
-                @Html.Label("3rd Topping")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody align="center">
-        @foreach (var item in Model)
-        {
+<head>
+    <link rel="stylesheet" href="~/css/Table.css" />
+</head>
+
+<body>
+
+    <h2>Shopping Cart</h2>
+
+    <table class="table" style="width:80%">
+        <thead align="center">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PizzaName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Crust)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sauce)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Topping1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Topping2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Topping3)
-                </td>
-                <td>
-                    <a asp-controller="Shoppingcart" asp-action="Delete/@item.PizzaId"> Delete Pizza</a>
-                </td>
+                <th>
+                    @Html.Label("Quantity")
+                </th>
+                <th>
+                    @Html.Label("Pizza Type")
+                </th>
+                <th>
+                    @Html.Label("Size")
+                </th>
+                <th>
+                    @Html.Label("Crust")
+                </th>
+                <th>
+                    @Html.Label("Sauce")
+                </th>
+                <th>
+                    @Html.Label("1st Topping")
+                </th>
+                <th>
+                    @Html.Label("2nd Topping2")
+                </th>
+                <th>
+                    @Html.Label("3rd Topping")
+                </th>
+                <th>
+                    @Html.Label("Price")
+                </th>
+             
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody align="center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="form-group">
 
- <div>
- <a asp-controller="Orders" asp-action="SubmitOrder">Submit My Order</a>
-</div>
+                            <input type="text" name="quantity">
 
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PizzaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Crust)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sauce)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topping1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topping2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topping3)
+                    </td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a asp-controller="Shoppingcart" asp-action="Delete/@item.PizzaId"> Delete Pizza</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div>
+        <a asp-controller="Orders" asp-action="SubmitOrder" class="btn">Submit My Order</a>
+    </div>
+
+
+</body>
