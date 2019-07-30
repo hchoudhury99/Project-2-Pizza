@@ -113,10 +113,10 @@ namespace PizzaWeb.Controllers
                 //customer id is orderid in Webapi temp database
                 if (o.CustomerId == item.OrderId)
                 {
-                    submitOrderPizza.Add(item);
+                    //submitOrderPizza.Add(item);
                     //remove the item from in memory storage
-                    _context.TempPizzas.Remove(item);
-                    _context.SaveChanges();
+                   // _context.TempPizzas.Remove(item);
+                    //_context.SaveChanges();
                 }
             }
             o.Pizza = submitOrderPizza;
@@ -165,9 +165,12 @@ namespace PizzaWeb.Controllers
 
                     postTask.Wait();
                     var result = postTask.Result;
-                    if (result.IsSuccessStatusCode)
+                    if (result.IsSuccessStatusCode)                    
                     {
-                        return RedirectToAction("Index");
+                        //new order id need to test
+                        int orderid = Convert.ToInt32(result.Headers.Location.Segments[3]) ;
+                        CreateAllPizza(orderid);
+                        return RedirectToAction("create", "payments", new { id = orderid });
                     }
                     ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
                 }
@@ -175,6 +178,51 @@ namespace PizzaWeb.Controllers
             }
 
             return View(order);
+        }
+
+        private void CreateAllPizza(int orderid)
+        {
+            int pizzaid;
+            Order o = SearchOrder(orderid);
+            o.CustomerId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            //o.Duetime = DateTime.Now;
+            o.Customer = SearchCustomerId(o.CustomerId.ToString());
+            //o.OrderDate = DateTime.Now;
+            List<Pizza> submitOrderPizza = new List<Pizza>();
+            
+            foreach (var pizza in _context.TempPizzas)
+            {
+                //customer id is orderid in Webapi temp database
+                if (o.CustomerId == pizza.OrderId)
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri(_url);
+                        //HTTP GET
+                        pizzaid = pizza.PizzaId;
+                        pizza.OrderId = orderid;
+                        pizza.PizzaId =0 ;
+                        // PizzaAPI.Controllers.CustomerController c = new PizzaAPI.Controllers.CustomerController(_context);
+                        var postTask = client.PostAsJsonAsync("Pizzas", pizza);
+                        postTask.Wait();
+
+                        var result = postTask.Result;
+                        if (!result.IsSuccessStatusCode)
+                        {
+                            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+                        }
+                        
+                    }
+                    pizza.PizzaId = pizzaid;
+                     submitOrderPizza.Add(pizza);
+                    //remove the item from in memory storage
+                    _context.TempPizzas.Remove(pizza);
+                    _context.SaveChanges();
+                }
+            }
+
+            o.Pizza = submitOrderPizza;
+
         }
 
         // GET: Orders/Edit/5

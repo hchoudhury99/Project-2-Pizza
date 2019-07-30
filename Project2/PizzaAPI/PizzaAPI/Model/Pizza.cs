@@ -37,13 +37,13 @@ namespace PizzaAPI.Model
     {
         [Key]
         public int PizzaId { get; set; }
-        public PizzaName?  PizzaName{ get; set; }
+        public PizzaName? PizzaName{ get; set; }
         public Size Size { get; set; }
         public Crust Crust { get; set; }
         public Sauce Sauce { get; set; }
         public Topping? Topping1 { get; set; }
         public Topping? Topping2 { get; set; }
-        public Topping? Topping3 { get; set; }
+        public Topping?Topping3 { get; set; }
         public double Total()
         {
             double temp=0;

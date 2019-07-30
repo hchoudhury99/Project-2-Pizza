@@ -56,7 +56,7 @@ namespace PizzaWeb.Controllers
         // POST: Shoppingcart/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Pizza p)
+        public ActionResult Create( Pizza p)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace PizzaWeb.Controllers
                 _context.TempPizzas.Add(p);
                 _context.SaveChanges();
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index", "Pizzas");
+                return RedirectToAction("TopChoice", "Home");
             }
             catch
             {
