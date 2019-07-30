@@ -16,7 +16,6 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class CustomersController : Controller
     {
-        //private readonly PizzaDbContext _context;
         private static string _url = "http://localhost:56782/api/";
 
 
@@ -58,7 +57,7 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Customers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
