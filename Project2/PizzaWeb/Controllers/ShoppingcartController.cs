@@ -60,6 +60,7 @@ namespace PizzaWeb.Controllers
         {
             try
             {
+                p.Price = p.Total();
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 //for shoppingcart purposes orderId is set to UserID
                 p.OrderId = Convert.ToInt32(userId);

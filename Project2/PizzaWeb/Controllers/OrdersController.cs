@@ -93,13 +93,13 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Orders/Create
-        public IActionResult Create()
+        public IActionResult Create(double total)
         {
             //ViewData["CustomerId"] = new SelectList(_context.Customer, "id", "id");
-            return View();
+            return View(total);
         }
 
-        public IActionResult SubmitOrder()
+        public IActionResult SubmitOrder(double total)
         {
 
             Order o = new Order();
@@ -125,7 +125,7 @@ namespace PizzaWeb.Controllers
             //o.TotalPrice = o.TotalPrice();
             //await Create(o);
 
-            return RedirectToAction("Create", o);
+            return RedirectToAction("Create/"+ total );
         }
 
 

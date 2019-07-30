@@ -1,9 +1,9 @@
-﻿@model List<Pizza> 
+﻿@model List<Pizza>
 @{
     ViewData["Title"] = "ShoppingCart";
 }
 
-
+@{double total = 0.0; }
 <head>
     <link rel="stylesheet" href="~/css/Table.css" />
 </head>
@@ -12,7 +12,7 @@
 
     <h2>Shopping Cart</h2>
 
-    <table class="table" style="width:80%">
+    <table class="table" style="width:70%; background-color:white;">
         <thead align="center">
             <tr>
                 <th>
@@ -42,10 +42,11 @@
                 <th>
                     @Html.Label("Price")
                 </th>
-             
+
             </tr>
         </thead>
         <tbody align="center">
+
             @foreach (var item in Model)
             {
                 <tr>
@@ -78,7 +79,8 @@
                         @Html.DisplayFor(modelItem => item.Topping3)
                     </td>
                     <td>
-                        
+                        $ @Html.DisplayFor(modelItem => item.Price)
+                        @{total += item.Price;}
                     </td>
                     <td>
                         <a asp-controller="Shoppingcart" asp-action="Delete/@item.PizzaId"> Delete Pizza</a>
@@ -87,9 +89,11 @@
             }
         </tbody>
     </table>
+    <label>Total: $ @total</label>
+
     <br />
     <div>
-        <a asp-controller="Orders" asp-action="SubmitOrder" class="btn">Submit My Order</a>
+        <a asp-controller="Orders" asp-action="create/@total" class="btn">Submit My Order</a>
     </div>
 
 
