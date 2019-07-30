@@ -1,5 +1,5 @@
 
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,7 +60,7 @@ namespace PizzaAPI.Controllers
 
             //var customer = await _context.Customer.FindAsync(id);
             var customer = _context.Customer.FirstOrDefaultAsync(x => x.UserId == Convert.ToInt32(id)).Result;
-           // return customer;
+            // return customer;
             if (customer == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace PizzaAPI.Controllers
 
             if (existingCustomer != null)
             {
-                
+
                 existingCustomer.Address = customer.Address;
                 existingCustomer.PhoneNo = customer.PhoneNo;
                 //existingCustomer.Orders = customer.Orders;

@@ -80,6 +80,9 @@
         h1 {
             color: white;
         }
+
+        
+
     </style>
 </head>
 
@@ -102,15 +105,15 @@
 
                         <div class="textbox">
 
-                            <input asp-for="PizzaName" value=@PizzaName.cheesePizza placeholder="Cheese Pizza" disabled/>
-
+                            <input asp-for="PizzaName" value=@PizzaName.cheesePizza placeholder="Cheese Pizza" readonly />
+                            
                             <span asp-validation-for="PizzaName" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
 
-                            <input asp-for="Crust" value=@Crust.cheeseCrust placeholder="Cheese Crust" disabled/>
+                            <input asp-for="Crust" value=@Crust.cheeseCrust placeholder="Cheese Crust" readonly />
 
                             <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -118,23 +121,21 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" disabled/>
+                            <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" readonly />
 
                             <span asp-validation-for="Sauce" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Topping1" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping1" value=@Topping.None placeholder="N/A" readonly />
 
                             <span asp-validation-for="Topping1" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly />
 
                             <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -142,7 +143,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly />
 
                             <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -185,7 +186,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="PizzaName" value=@PizzaName.veggiePizza placeholder="Veggie Pizza"disabled />
+                            <input asp-for="PizzaName" value=@PizzaName.veggiePizza placeholder="Veggie Pizza" readonly/>
 
                             <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -193,7 +194,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Crust" value=@Crust.glutenfreeCrust placeholder=" Gluten Free Crust" disabled/>
+                            <input asp-for="Crust" value=@Crust.glutenfreeCrust placeholder=" Gluten Free Crust" readonly/>
 
                             <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -201,15 +202,14 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Sauce" value=@Sauce.hummusSauce placeholder="Hummus Sauce" disabled/>
+                            <input asp-for="Sauce" value=@Sauce.hummusSauce placeholder="Hummus Sauce" readonly/>
 
                             <span asp-validation-for="Sauce" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Topping1" value=@Topping.Mushrooms placeholder="Mushrooms" disabled/>
+                            <input asp-for="Topping1" value=@Topping.Mushrooms placeholder="Mushrooms" readonly/>
 
                             <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -217,15 +217,14 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" disabled/>
+                            <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" readonly/>
 
                             <span asp-validation-for="Topping2" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Topping3" value=@Topping.Olives placeholder="Olives" disabled/>
+                            <input asp-for="Topping3" value=@Topping.Olives placeholder="Olives" readonly/>
 
                             <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -267,7 +266,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="PizzaName" value=@PizzaName.chickenPizza placeholder="Chicken Pizza" disabled/>
+                            <input asp-for="PizzaName" value=@PizzaName.chickenPizza placeholder="Chicken Pizza" readonly/>
 
                             <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -275,15 +274,14 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Crust" value=@Crust.handtossedCrust placeholder=" Hand Tossed Crust" disabled/>
+                            <input asp-for="Crust" value=@Crust.handtossedCrust placeholder=" Hand Tossed Crust" readonly/>
 
                             <span asp-validation-for="Crust" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Sauce" value=@Sauce.SalsaSauce placeholder="Salsa Sauce" disabled />
+                            <input asp-for="Sauce" value=@Sauce.SalsaSauce placeholder="Salsa Sauce" readonly/>
 
                             <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -291,7 +289,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping1" value=@Topping.chicken placeholder="Chicken" disabled/>
+                            <input asp-for="Topping1" value=@Topping.chicken placeholder="Chicken" readonly/>
 
                             <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -299,7 +297,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
 
                             <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -307,7 +305,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
 
                             <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -349,31 +347,28 @@
 
                         <div class="textbox">
 
-                            <input asp-for="PizzaName" value=@PizzaName.beefPizza placeholder="Beef Pizza" disabled/>
+                            <input asp-for="PizzaName" value=@PizzaName.beefPizza placeholder="Beef Pizza" readonly/>
 
                             <span asp-validation-for="PizzaName" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Crust" value=@Crust.crunchyCrust placeholder=" Crunchy Crust" disabled/>
+                            <input asp-for="Crust" value=@Crust.crunchyCrust placeholder=" Crunchy Crust" readonly/>
 
                             <span asp-validation-for="Crust" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Sauce" value=@Sauce.BBQSauce placeholder="BBQ Sauce" disabled/>
+                            <input asp-for="Sauce" value=@Sauce.BBQSauce placeholder="BBQ Sauce" readonly/>
 
                             <span asp-validation-for="Sauce" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
-
-                            <input asp-for="Topping1" value=@Topping.beef placeholder="Beef" disabled/>
+                            <input asp-for="Topping1" value=@Topping.beef placeholder="Beef" readonly/>
 
                             <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -381,7 +376,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
 
                             <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -389,7 +384,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
 
                             <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -431,7 +426,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="PizzaName" value=@PizzaName.pepperoniPizza placeholder="Pepperoni Pizza" disabled/>
+                            <input asp-for="PizzaName" value=@PizzaName.pepperoniPizza placeholder="Pepperoni Pizza" readonly/>
 
                             <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -439,7 +434,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Crust" value=@Crust.brooklynstyleCrust placeholder=" Brooklyn Style Crust" disabled/>
+                            <input asp-for="Crust" value=@Crust.brooklynstyleCrust placeholder=" Brooklyn Style Crust" readonly/>
 
                             <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -447,7 +442,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Sauce" value=@Sauce.BechamelSauce placeholder="Bechamel Sauce" disabled/>
+                            <input asp-for="Sauce" value=@Sauce.BechamelSauce placeholder="Bechamel Sauce" readonly/>
 
                             <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -455,7 +450,7 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping1" value=@Topping.Pepperoni placeholder="Pepperoni" disabled/>
+                            <input asp-for="Topping1" value=@Topping.Pepperoni placeholder="Pepperoni" readonly/>
 
                             <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -463,15 +458,15 @@
 
                         <div class="textbox">
 
-                            <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
-
+                            <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
                             <span asp-validation-for="Topping2" class="text-danger"></span>
 
                         </div>
 
                         <div class="textbox">
 
-                            <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                            <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
+
 
                             <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -516,7 +511,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="PizzaName" value=@PizzaName.sausagePizza placeholder="Sausage Pizza" disabled/>
+=======
+                                <input asp-for="PizzaName" value=@PizzaName.sausagePizza placeholder="Sausage Pizza" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -524,7 +523,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" disabled/>
+=======
+                                <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -532,7 +535,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Sauce" value=@Sauce.garlicSauce placeholder="Garlic Sauce" disabled/>
+=======
+                                <input asp-for="Sauce" value=@Sauce.garlicSauce placeholder="Garlic Sauce" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -540,7 +547,7 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" disabled/>
+                                <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" readonly/>
 
                                 <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -548,15 +555,15 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
+                                <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
+
 
                                 <span asp-validation-for="Topping2" class="text-danger"></span>
 
                             </div>
 
                             <div class="textbox">
-
-                                <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                                <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
 
                                 <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -598,15 +605,14 @@
 
                             <div class="textbox">
 
-                                <input asp-for="PizzaName" value=@PizzaName.greekPizza placeholder="Greek Pizza" disabled/>
+                                <input asp-for="PizzaName" value=@PizzaName.greekPizza placeholder="Greek Pizza" readonly/>
 
                                 <span asp-validation-for="PizzaName" class="text-danger"></span>
 
                             </div>
 
                             <div class="textbox">
-
-                                <input asp-for="Crust" value=@Crust.softNpuffyCrust placeholder=" softNpuffy Crust" disabled/>
+                                <input asp-for="Crust" value=@Crust.softNpuffyCrust placeholder=" softNpuffy Crust" readonly/>
 
                                 <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -614,7 +620,7 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Sauce" value=@Sauce.pestoSauce placeholder="Pesto Sauce" disabled/>
+                                <input asp-for="Sauce" value=@Sauce.pestoSauce placeholder="Pesto Sauce" readonly/>
 
                                 <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -622,7 +628,7 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping1" value=@Topping.RedPepper placeholder="Red Pepper" disabled/>
+                                <input asp-for="Topping1" value=@Topping.RedPepper placeholder="Red Pepper" readonly/>
 
                                 <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -630,15 +636,14 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping2" value=@Topping.Artichokes placeholder="Artichokes" disabled/>
+                                <input asp-for="Topping2" value=@Topping.Artichokes placeholder="Artichokes" readonly/>
 
                                 <span asp-validation-for="Topping2" class="text-danger"></span>
 
                             </div>
 
                             <div class="textbox">
-
-                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" disabled />
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
 
                                 <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -680,7 +685,8 @@
 
                             <div class="textbox">
 
-                                <input asp-for="PizzaName" value=@PizzaName.chicagoPizza placeholder="Chicago Pizza" disabled/>
+
+                                <input asp-for="PizzaName" value=@PizzaName.chicagoPizza placeholder="Chicago Pizza" readonly/>
 
                                 <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -688,23 +694,25 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Crust" value=@Crust.thickCrust placeholder=" Thick Crust" disabled/>
+=======
+                                <input asp-for="Crust" value=@Crust.thickCrust placeholder=" Thick Crust" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Crust" class="text-danger"></span>
 
                             </div>
 
                             <div class="textbox">
-
-                                <input asp-for="Sauce" value=@Sauce.pumpkinSauce placeholder="Pumpkin Sauce" disabled/>
-
+                                <input asp-for="Sauce" value=@Sauce.pumpkinSauce placeholder="Pumpkin Sauce" readonly/>
                                 <span asp-validation-for="Sauce" class="text-danger"></span>
 
                             </div>
 
                             <div class="textbox">
 
-                                <input asp-for="Topping1" value=@Topping.Null placeholder="N/A" disabled/>
+                                <input asp-for="Topping1" value=@Topping.None placeholder="N/A" readonly/>
 
                                 <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -712,7 +720,7 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping2" value=@Topping.Null placeholder="N/A" disabled/>
+                                <input asp-for="Topping2" value=@Topping.None placeholder="N/A" readonly/>
 
                                 <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -720,7 +728,7 @@
 
                             <div class="textbox">
 
-                                <input asp-for="Topping3" value=@Topping.Null placeholder="N/A" disabled/>
+                                <input asp-for="Topping3" value=@Topping.None placeholder="N/A" readonly/>
 
                                 <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -762,7 +770,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="PizzaName" value=@PizzaName.neapolitanPizza placeholder="Neapolitan Pizza" disabled/>
+=======
+                                <input asp-for="PizzaName" value=@PizzaName.neapolitanPizza placeholder="Neapolitan Pizza" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -770,7 +782,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" disabled/>
+=======
+                                <input asp-for="Crust" value=@Crust.thinCrust placeholder=" Thin Crust" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -778,7 +794,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" disabled/>
+=======
+                                <input asp-for="Sauce" value=@Sauce.tomatoeSauce placeholder="Tomato Sauce" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -786,7 +806,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping1" value=@Topping.spinach placeholder="Spinach" disabled/>
+=======
+                                <input asp-for="Topping1" value=@Topping.spinach placeholder="Spinach" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -794,7 +818,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" disabled/>
+=======
+                                <input asp-for="Topping2" value=@Topping.Tomatoes placeholder="Tomatoes" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -802,7 +830,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" disabled/>
+=======
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping3" class="text-danger"></span>
 
@@ -844,7 +876,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="PizzaName" value=@PizzaName.sicilianPizza placeholder="Sicilian Pizza" disabled/>
+=======
+                                <input asp-for="PizzaName" value=@PizzaName.sicilianPizza placeholder="Sicilian Pizza" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="PizzaName" class="text-danger"></span>
 
@@ -852,7 +888,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Crust" value=@Crust.thickCrust placeholder="Thick Crust" disabled/>
+=======
+                                <input asp-for="Crust" value=@Crust.thickCrust placeholder="Thick Crust" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Crust" class="text-danger"></span>
 
@@ -860,7 +900,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Sauce" value=@Sauce.wasabiSauce placeholder="Wasabi Sauce" disabled/>
+=======
+                                <input asp-for="Sauce" value=@Sauce.wasabiSauce placeholder="Wasabi Sauce" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Sauce" class="text-danger"></span>
 
@@ -868,7 +912,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" disabled/>
+=======
+                                <input asp-for="Topping1" value=@Topping.Sausage placeholder="Sausage" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping1" class="text-danger"></span>
 
@@ -876,7 +924,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping2" value=@Topping.Pepperoni placeholder="Pepperoni" disabled/>
+=======
+                                <input asp-for="Topping2" value=@Topping.Pepperoni placeholder="Pepperoni" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping2" class="text-danger"></span>
 
@@ -884,7 +936,11 @@
 
                             <div class="textbox">
 
+<<<<<<< HEAD
                                 <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" disabled/>
+=======
+                                <input asp-for="Topping3" value=@Topping.Basil placeholder="Basil" readonly/>
+>>>>>>> 8fda6a8212eb08bbded32e449b11a3a406d0d310
 
                                 <span asp-validation-for="Topping3" class="text-danger"></span>
 

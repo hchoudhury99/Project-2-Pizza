@@ -15,7 +15,7 @@ namespace PizzaAPI.Model
     {
         chicken, beef, pork, spinach, onion, greenpeppers, Mushrooms,
         Tomatoes, Olives, Pepperoni, Sausage, RedPepper, Artichokes, Basil,
-        Null, Cheese
+        None, Cheese
     }
     public enum PizzaName
     {
