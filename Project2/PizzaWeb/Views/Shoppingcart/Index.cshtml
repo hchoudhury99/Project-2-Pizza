@@ -83,7 +83,9 @@
 
     <br />
     <div>
+         @if (total>0.0){
         <a asp-controller="Orders" asp-action="create/@total" class="btn">Submit My Order</a>
+            }
     </div>
 
 
