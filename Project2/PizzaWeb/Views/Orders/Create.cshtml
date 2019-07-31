@@ -52,7 +52,7 @@
             console.log("yes");
             var url = "http://localhost:56782/api/orders/";
             var dataObject = JSON.stringify({
-                'TotalPrice': $('#TotalPrice').val(),
+                TotalPrice: $('#TotalPrice').val(),
             });
             $.ajax({
                 url: url,

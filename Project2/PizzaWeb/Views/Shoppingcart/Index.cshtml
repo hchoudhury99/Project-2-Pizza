@@ -16,9 +16,6 @@
         <thead align="center">
             <tr>
                 <th>
-                    @Html.Label("Quantity")
-                </th>
-                <th>
                     @Html.Label("Pizza Type")
                 </th>
                 <th>
@@ -50,13 +47,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        <div class="form-group">
-
-                            <input type="text" name="quantity">
-
-                        </div>
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PizzaName)
                     </td>
