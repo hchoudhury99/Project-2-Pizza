@@ -16,7 +16,7 @@ namespace PizzaWeb.Controllers
     [Authorize]
     public class CustomersController : Controller
     {
-        private static string _url = "http://localhost:56782/api/";
+        private static string _url = "https://project-2-pizza-2.azurewebsites.net/api";
 
         // GET: Customers
         public ActionResult Index()

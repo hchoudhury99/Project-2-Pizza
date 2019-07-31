@@ -12,7 +12,7 @@ namespace PizzaWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private static string _url = "http://localhost:56782/api/";
+        private static string _url = "https://project-2-pizza-2.azurewebsites.net/api";
         public IActionResult Index()
         {
             Customer customers = null;
