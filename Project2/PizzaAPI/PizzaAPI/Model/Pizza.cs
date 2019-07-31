@@ -48,7 +48,7 @@ namespace PizzaAPI.Model
         public double Total()
         {
             double temp=0;
-            if (this.PizzaName.Equals("customPizza"))
+            if (this.PizzaName.ToString().Equals("customPizza"))
             {
                 if (Topping1 != null)
                 {

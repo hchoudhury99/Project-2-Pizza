@@ -67,6 +67,10 @@ namespace PizzaWeb.Controllers
                 _context.TempPizzas.Add(p);
                 _context.SaveChanges();
                 //return RedirectToAction(nameof(Index));
+                if (p.PizzaName.ToString().Equals("customPizza"))
+                {
+                    return RedirectToAction("Index", "Shoppingcart");
+                }
                 return RedirectToAction("TopChoice", "Home");
             }
             catch
