@@ -10,7 +10,6 @@ namespace PizzaAPI.Model
     {
         [Key]
         public int OrderId { get; set; }
-        [Range(1,1000)]
         public double TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime Duetime { get; set; }

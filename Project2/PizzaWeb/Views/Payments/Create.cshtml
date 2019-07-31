@@ -183,13 +183,13 @@
                 {
                     <tr>
                         <td>
-                            <p><a href="#">@Html.DisplayFor(modelItem => item.PizzaName)</a> <span class="price">$</span></p>
+                            <p><a href="#">@Html.DisplayFor(modelItem => item.PizzaName)</a> <span class="price">$@Html.DisplayFor(modelItem => item.Price) </span></p>
                         </td>
                     </tr>
                 }
             }
             <hr>
-            <p>Total <span class="price" style="color:black"><b>@Html.DisplayFor(model => model.order.TotalPrice)</b></span></p>
+            <p>Total <span class="price" style="color:black"><b>$@Html.DisplayFor(model => model.order.TotalPrice)</b></span></p>
         </div>
     </div>
 </div>

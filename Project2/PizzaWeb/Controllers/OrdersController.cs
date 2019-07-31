@@ -93,40 +93,43 @@ namespace PizzaWeb.Controllers
         }
 
         // GET: Orders/Create
-        public IActionResult Create(double total)
+        public IActionResult Create()
         {
             //ViewData["CustomerId"] = new SelectList(_context.Customer, "id", "id");
-            return View(total);
+            double total = Convert.ToDouble(this.RouteData.Values.Values.Last());
+            Order order = new Order();
+            order.TotalPrice = total;
+            return View(order);
         }
 
-        public IActionResult SubmitOrder(double total)
-        {
+        //public IActionResult SubmitOrder(double total)
+        //{
 
-            Order o = new Order();
-            o.CustomerId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            //o.Duetime = DateTime.Now;
-            o.Customer = SearchCustomerId(o.CustomerId.ToString());
-            //o.OrderDate = DateTime.Now;
-            List<Pizza> submitOrderPizza = new List<Pizza>();
+        //    Order o = new Order();
+        //    o.CustomerId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        //    //o.Duetime = DateTime.Now;
+        //    o.Customer = SearchCustomerId(o.CustomerId.ToString());
+        //    //o.OrderDate = DateTime.Now;
+        //    List<Pizza> submitOrderPizza = new List<Pizza>();
             
-            foreach (var item in _context.TempPizzas)
-            {
-                //customer id is orderid in Webapi temp database
-                if (o.CustomerId == item.OrderId)
-                {
-                    //submitOrderPizza.Add(item);
-                    //remove the item from in memory storage
-                   // _context.TempPizzas.Remove(item);
-                    //_context.SaveChanges();
-                }
-            }
-            o.Pizza = submitOrderPizza;
+        //    foreach (var item in _context.TempPizzas)
+        //    {
+        //        //customer id is orderid in Webapi temp database
+        //        if (o.CustomerId == item.OrderId)
+        //        {
+        //            //submitOrderPizza.Add(item);
+        //            //remove the item from in memory storage
+        //           // _context.TempPizzas.Remove(item);
+        //            //_context.SaveChanges();
+        //        }
+        //    }
+        //    o.Pizza = submitOrderPizza;
             
-            //o.TotalPrice = o.TotalPrice();
-            //await Create(o);
+        //    //o.TotalPrice = o.TotalPrice();
+        //    //await Create(o);
 
-            return RedirectToAction("Create/"+ total );
-        }
+        //    return RedirectToAction("Create/"+ total );
+        //}
 
 
 
@@ -139,7 +142,7 @@ namespace PizzaWeb.Controllers
         {
             order.OrderDate = DateTime.Now;
             order.Duetime = DateTime.Now.AddMinutes(20);
-            //order.Customer = c;
+            order.TotalPrice= Convert.ToDouble(this.RouteData.Values.Values.Last());
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Clear();
