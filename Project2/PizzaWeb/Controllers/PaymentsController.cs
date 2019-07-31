@@ -92,7 +92,7 @@ namespace PizzaWeb.Controllers
 
                 Customer cust = SearchCustomerId(User.Claims.First().Value);
                 //Payment payments = GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId);
-                Order order= SearchAllOrder().FirstOrDefault(x => x.Customer.CustomerId == cust.CustomerId);
+                Order order= SearchOrder(Convert.ToInt32(this.RouteData.Values.Values.Last()));
                 orderPayment.order = order;
 
                 if (cust == null || GetAllPayment().FirstOrDefault(x => x.CustomerId == cust.CustomerId) != null)

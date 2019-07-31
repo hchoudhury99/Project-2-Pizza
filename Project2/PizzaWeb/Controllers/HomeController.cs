@@ -48,26 +48,29 @@ namespace PizzaWeb.Controllers
         public IActionResult TopChoice()
         {
             Customer customers = null;
-            using (var client = new HttpClient())
+            if (User.Claims.Count() != 0)
             {
-                client.BaseAddress = new Uri(_url);
-
-                var responseTask = client.GetAsync("Customers/" + Convert.ToInt32(User.Claims.First().Value));
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var readTask = result.Content.ReadAsAsync<Customer>();
-                    readTask.Wait();
-                    customers = readTask.Result;
+                    client.BaseAddress = new Uri(_url);
 
-                }
-                else //web api sent error response 
-                {
+                    var responseTask = client.GetAsync("Customers/" + Convert.ToInt32(User.Claims.First().Value));
+                    responseTask.Wait();
 
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-                    return RedirectToAction("create", "customers");
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<Customer>();
+                        readTask.Wait();
+                        customers = readTask.Result;
+
+                    }
+                    else //web api sent error response 
+                    {
+
+                        ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                        return RedirectToAction("create", "customers");
+                    }
                 }
             }
             return View();

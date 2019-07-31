@@ -25,10 +25,8 @@
 
     <body>
 
-        <h1>Order</h1>
+        <h1>Order history</h1>
         <br />
-        <a class="btn" asp-action="Create">Create New</a>
-        @ViewBag.CustomerID
         <table class="table">
             <thead>
                 <tr>
@@ -79,8 +77,8 @@
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a> |
-                            <a asp-controller="Payments" asp-action="Create" asp-route-id="@item.OrderId">Checkout</a>
+                            <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a> 
+                           
                         </td>
                     </tr>
 

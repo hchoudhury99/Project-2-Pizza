@@ -44,10 +44,11 @@ namespace PizzaAPI.Model
         public Topping? Topping1 { get; set; }
         public Topping? Topping2 { get; set; }
         public Topping?Topping3 { get; set; }
+        public double Price { get; set; }
         public double Total()
         {
             double temp=0;
-            if (this.PizzaName == null)
+            if (this.PizzaName.ToString().Equals("customPizza"))
             {
                 if (Topping1 != null)
                 {
@@ -61,16 +62,20 @@ namespace PizzaAPI.Model
                 {
                     temp += 2.50;
                 }
-                if (this.Size == Size.Small) { temp += 1.0; }
-                if (this.Size == Size.Medium) { temp += 2.0; }
-                if (this.Size == Size.Large) { temp += 3.0; }
+                if (this.Size == Size.ExtraSmall) { temp += 0.5; }
+                else if (this.Size == Size.Small) { temp += 1.0; }
+                else if (this.Size == Size.Medium) { temp += 2.0; }
+                else if (this.Size == Size.Large) { temp += 3.0; }
+                else { temp += 3.5; }
 
                 return temp;
             }
             temp = 6.00;
-            if (this.Size == Size.Small) { temp += 1.0; }
-            if (this.Size == Size.Medium) { temp += 2.0; }
-            if (this.Size == Size.Large) { temp += 3.0; }
+            if (this.Size == Size.ExtraSmall) { temp += 0.5; }
+            else if (this.Size == Size.Small) { temp += 1.0; }
+            else if (this.Size == Size.Medium) { temp += 2.0; }
+            else if (this.Size == Size.Large) { temp += 3.0; }
+            else { temp += 3.5; }
             return temp;
         }
         public Order Order { get; set; }

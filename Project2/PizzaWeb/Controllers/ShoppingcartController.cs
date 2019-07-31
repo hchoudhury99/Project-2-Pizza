@@ -60,12 +60,17 @@ namespace PizzaWeb.Controllers
         {
             try
             {
+                p.Price = p.Total();
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 //for shoppingcart purposes orderId is set to UserID
                 p.OrderId = Convert.ToInt32(userId);
                 _context.TempPizzas.Add(p);
                 _context.SaveChanges();
                 //return RedirectToAction(nameof(Index));
+                if (p.PizzaName.ToString().Equals("customPizza"))
+                {
+                    return RedirectToAction("Index", "Shoppingcart");
+                }
                 return RedirectToAction("TopChoice", "Home");
             }
             catch
