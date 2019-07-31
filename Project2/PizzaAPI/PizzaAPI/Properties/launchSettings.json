@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:56782/",
+      "applicationUrl": "https://project-2-pizza-2.azurewebsites.net/api/",
       "sslPort": 0
     }
   },
@@ -22,7 +22,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:56782/"
+      "applicationUrl": "https://project-2-pizza-2.azurewebsites.net/api/"
     }
   }
 }
