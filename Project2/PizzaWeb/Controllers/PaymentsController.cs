@@ -18,7 +18,7 @@ namespace PizzaWeb.Controllers
     public class PaymentsController : Controller
     {
 
-        private static string _url = "https://project-2-pizza-2.azurewebsites.net/api";
+        private static string _url = "https://project-2-pizza-2.azurewebsites.net/api/";
         // GET: Payments
         public async Task<IActionResult> Index()
         {
